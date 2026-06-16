@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beach Club – Paradise Cartagena Tours</title>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "sc-primary":           "#0077B6",
+        "sc-primary-dim":       "#005f8e",
+        "sc-primary-container":   "#FF7A00",
+        "sc-on-primary":        "#ffffff",
+        "sc-secondary":           "#00A8A8",
+        "sc-tertiary-bg":       "#ffc703",
+        "sc-on-tertiary":       "#584300",
+        "sc-surface":           "#fff4ef",
+        "sc-surface-low":       "#ffede4",
+        "sc-surface-mid":       "#ffe3d2",
+        "sc-surface-high":      "#ffdcc6",
+        "sc-surface-card":      "#ffffff",
+        "sc-on-bg":             "#4a2506",
+        "sc-on-muted":          "#7f512e",
+        "sc-outline":           "#9e6b47",
+        "sc-outline-light":     "#dba078",
+        "sc-error-bg":          "#f95630",
+        "sc-on-error":          "#ffefec",
+      },
+      borderRadius: { DEFAULT:"1rem", lg:"2rem", xl:"3rem", full:"9999px" },
+      fontFamily:   { headline:["Plus Jakarta Sans"], body:["Manrope"] }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align:middle; }
+  body { font-family:'Manrope',sans-serif; background:#fff4ef; }
+  h1,h2,h3,h4 { font-family:'Plus Jakarta Sans',sans-serif; }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+
+  .gallery-thumb { cursor:pointer; overflow:hidden; position:relative; }
+  .gallery-thumb img { transition:transform 0.4s ease; }
+  .gallery-thumb:hover img { transform:scale(1.06); }
+
+  .card-shadow { box-shadow:0 8px 40px rgba(74,37,6,0.09); }
+
+  .reveal { opacity:0; transform:translateY(18px); transition:opacity 0.45s ease,transform 0.45s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  #stickyBar { transform:translateY(100%); transition:transform 0.3s ease; }
+  #stickyBar.show { transform:translateY(0); }
+
+  #lightbox {
+    display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92);
+    z-index:200; align-items:center; justify-content:center;
+    transition:opacity 0.25s ease; opacity:0;
+  }
+  #lightbox.open { display:flex; opacity:1; }
+  #lightbox img { max-width:90vw; max-height:82vh; border-radius:12px;
+    transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.14s ease; transform:scale(0.92); touch-action:pan-y; user-select:none; }
+  #lightbox.open img { transform:scale(1); }
+
+  .drop-cap::first-letter {
+    float:left; font-size:3.5rem; line-height:0.8; margin:0.08em 0.1em 0 0;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color: #0077B6;
+  }
+  .timeline::before {
+    content:''; position:absolute; left:11px; top:6px; bottom:6px;
+    width:1px; background:#dba078;
+  }
+  .lux-chip { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 10px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;font-size:0.72rem;font-weight:500;color:#fff;white-space:nowrap;user-select:none; }
+  .lux-chip:hover { background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);transform:translateY(-1px); }
+  .lux-chip:active { transform:scale(0.97); }
+  .lux-chip-wrap { position:relative; }
+  .lux-dropdown { position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:6px;min-width:140px;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease; }
+  .lux-dropdown.open { opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0); }
+  .lux-dropdown-item { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:400;color:#1a1a1a;cursor:pointer;transition:background .12s; }
+  .lux-dropdown-item:hover { background:rgba(0,0,0,0.05); }
+  .lux-dropdown-item.selected { font-weight:700;background:rgba(0,119,182,0.07);color:#0077B6; }
+  .lux-dropdown-item .item-code { font-weight:700;font-size:13px; }
+  .lux-dropdown-item .item-name { color:#666;font-size:12px; }
+</style>
+</head>
+
+<body class="text-sc-on-bg min-h-screen" data-page="beach-clubs">
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html"       data-nav="tours"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tours">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.beach">BEACH CLUBS</a>
+    <a href="boats.html"       data-nav="boats"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.boats">BOATS</a>
+    <a href="why-us.html"      data-nav="why-us"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.why">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tips">TRAVEL TIPS</a>
+    <a href="contact.html"     data-nav="contact"      class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.contact">CONTACT</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <select id="currencySelect" style="display:none;"><option value="USD">USD</option><option value="COP">COP</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+    <div class="hidden sm:flex lux-chip-wrap" id="langWrap">
+      <button class="lux-chip" id="langBtn" onclick="toggleDrop('lang')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:1rem;line-height:1;">🌐</span>
+        <span id="langLabel">EN</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="langDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="en" onclick="pickLang('en')"><span class="item-code">EN</span><span class="item-name">English</span></div>
+        <div class="lux-dropdown-item" data-val="es" onclick="pickLang('es')"><span class="item-code">ES</span><span class="item-name">Español</span></div>
+        <div class="lux-dropdown-item" data-val="pt" onclick="pickLang('pt')"><span class="item-code">PT</span><span class="item-name">Português</span></div>
+      </div>
+    </div>
+    <div class="hidden sm:flex lux-chip-wrap" id="currWrap">
+      <button class="lux-chip" id="currBtn" onclick="toggleDrop('curr')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:0.85rem;line-height:1;font-weight:600;" id="currSymbol">$</span>
+        <span id="currLabel">USD</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="currDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="USD" onclick="pickCurr('USD')"><span class="item-code">USD</span><span class="item-name">US Dollar</span></div>
+        <div class="lux-dropdown-item" data-val="COP" onclick="pickCurr('COP')"><span class="item-code">COP</span><span class="item-name">Colombian Peso</span></div>
+        <div class="lux-dropdown-item" data-val="EUR" onclick="pickCurr('EUR')"><span class="item-code">EUR</span><span class="item-name">Euro</span></div>
+        <div class="lux-dropdown-item" data-val="GBP" onclick="pickCurr('GBP')"><span class="item-code">GBP</span><span class="item-name">British Pound</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ STICKY BOTTOM BAR ════════════════════════════════════ -->
+<div id="stickyBar" class="fixed bottom-0 left-0 w-full z-[60] bg-sc-surface-card border-t border-sc-outline-light/30 py-3 px-6 md:px-12" style="box-shadow:0 -4px 20px rgba(74,37,6,0.08);">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex flex-col">
+      <span id="stickyName" class="text-xs uppercase tracking-widest text-sc-on-muted font-medium truncate max-w-[200px]"></span>
+      <div class="flex items-baseline gap-1.5">
+        <span id="stickyPrice" class="text-xl font-extrabold text-sc-primary"></span>
+        <span class="text-xs text-sc-on-muted" data-i18n="per_person_label">/ person</span>
+      </div>
+    </div>
+    <button id="stickyBookBtn" class="bg-[#FF7A00] hover:bg-[#FF4E50] text-white px-8 py-3 rounded-full font-bold text-sm transition-colors shadow-md">
+      <span data-i18n="btn.secure">Secure Your Spot — WhatsApp</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ LIGHTBOX ═════════════════════════════════════════════ -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button class="absolute top-5 right-6 text-white/80 hover:text-white transition-colors" onclick="closeLightbox(event)">
+    <span class="material-symbols-outlined text-4xl">close</span>
+  </button>
+  <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white" onclick="shiftLightbox(-1,event)">
+    <span class="material-symbols-outlined text-5xl">chevron_left</span>
+  </button>
+  <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white" onclick="shiftLightbox(1,event)">
+    <span class="material-symbols-outlined text-5xl">chevron_right</span>
+  </button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()" draggable="false"/>
+</div>
+
+<!-- ═══ BOOKING MODAL ════════════════════════════════════════ -->
+<div id="bookingModal" class="hidden fixed inset-0 z-[100] flex items-end md:items-center justify-center p-4" style="background:rgba(74,37,6,0.55);backdrop-filter:blur(8px);">
+  <div class="bg-sc-surface-card w-full max-w-md rounded-xl overflow-hidden card-shadow">
+    <div class="relative h-44 overflow-hidden">
+      <img id="modalImg" src="" alt="" class="w-full h-full object-cover"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent"></div>
+      <h3 id="modalName" class="absolute bottom-4 left-5 text-white text-lg font-extrabold leading-snug pr-10"></h3>
+      <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-1.5" data-i18n="modal.fname">First Name</label>
+          <input id="mFirstName" type="text" placeholder="Maria" class="w-full bg-sc-surface-low rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-sc-primary/30"/>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-1.5" data-i18n="modal.lname">Last Name</label>
+          <input id="mLastName" type="text" placeholder="González" class="w-full bg-sc-surface-low rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-sc-primary/30"/>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-1.5" data-i18n="modal.date">Date</label>
+          <input id="mDate" type="date" class="w-full bg-sc-surface-low rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-sc-primary/30"/>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-1.5" data-i18n="modal.guests">Guests</label>
+          <select id="mGuests" class="w-full bg-sc-surface-low rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-sc-primary/30 appearance-none cursor-pointer">
+            <option selected>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10+</option>
+          </select>
+        </div>
+      </div>
+      <!-- Total price -->
+      <div class="bg-sc-surface-low rounded-2xl px-5 py-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-0.5" data-i18n="modal.total.label">Total</p>
+          <p id="mTotalSubtext" class="text-xs text-sc-on-muted mt-0.5"></p>
+        </div>
+        <p id="mTotalPrice" class="text-2xl font-extrabold text-sc-primary"></p>
+      </div>
+      <button onclick="sendWA()" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-full font-black text-sm flex items-center justify-center gap-2 transition-colors shadow-md">
+        <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">chat</span>
+        <span data-i18n="modal.book">Book via WhatsApp</span>
+      </button>
+      <p class="text-center text-xs text-sc-on-muted" data-i18n="modal.note">🔒 Free · No payment now · Instant reply</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════ -->
+<main class="pt-28 pb-16 px-6 max-w-7xl mx-auto">
+
+  <!-- Breadcrumb -->
+  <div class="mb-6 flex items-center gap-1.5 text-sc-on-muted text-sm font-medium">
+    <a href="index.html" class="hover:text-sc-primary transition-colors" data-i18n="bc.home">Home</a>
+    <span class="material-symbols-outlined text-base">chevron_right</span>
+    <a href="beach-clubs.html" class="hover:text-sc-primary transition-colors" data-i18n="bc.clubs">Beach Clubs</a>
+    <span class="material-symbols-outlined text-base">chevron_right</span>
+    <span id="breadcrumbName" class="text-sc-primary font-bold truncate max-w-xs"></span>
+  </div>
+
+  <!-- 12-col hero grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-8">
+
+      <!-- Badge + limited row -->
+      <div class="flex items-center gap-3 mb-4">
+        <span id="heroBadge" class="text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
+        <span id="heroLimited" class="hidden text-sc-error-bg font-bold text-sm flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">local_fire_department</span>
+          <span data-i18n="limited.capacity">⚡ Limited daily capacity</span>
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h1 id="heroTitle" class="text-4xl lg:text-6xl font-extrabold text-sc-primary leading-tight mb-3"></h1>
+
+      <!-- Vibe tags -->
+      <div id="vibeTagsRow" class="flex flex-wrap gap-2 mb-4"></div>
+
+      <!-- Subtitle / tagline -->
+      <p id="heroSubtitle" class="text-xl font-medium text-sc-secondary italic mb-2"></p>
+      <p id="heroTagline" class="text-sc-on-muted text-base mb-6"></p>
+
+      <!-- Quick feature specs -->
+      <div id="heroSpecs" class="flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold text-sc-primary uppercase tracking-wider mb-8"></div>
+
+      <!-- Bento Gallery -->
+      <div class="grid grid-cols-4 grid-rows-2 gap-3 h-[420px] md:h-[480px] mb-2">
+        <div class="col-span-3 row-span-2 gallery-thumb rounded-xl" onclick="openLightbox(0)">
+          <img id="gImg0" src="" alt="" class="w-full h-full object-cover rounded-xl"/>
+        </div>
+        <div class="col-span-1 row-span-1 gallery-thumb rounded-xl" onclick="openLightbox(1)">
+          <img id="gImg1" src="" alt="" class="w-full h-full object-cover rounded-xl"/>
+        </div>
+        <div class="col-span-1 row-span-1 gallery-thumb rounded-xl" onclick="openLightbox(2)">
+          <img id="gImg2" src="" alt="" class="w-full h-full object-cover rounded-xl"/>
+          <div class="absolute inset-0 bg-black/25 flex items-center justify-center rounded-xl">
+            <span class="text-white text-xs font-bold tracking-wider">VIEW ALL</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-sc-on-muted mb-10" data-i18n="gallery.caption">Click any photo to enlarge</p>
+
+    </div><!-- /left -->
+
+    <!-- RIGHT: Sidebar -->
+    <div class="lg:col-span-4">
+      <div class="sticky top-28 bg-sc-surface-card rounded-xl p-8 card-shadow border border-sc-outline-light/20">
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span class="text-xs uppercase tracking-widest text-sc-on-muted font-medium" data-i18n="sidebar.price_label">Day Pass Price</span>
+          <div class="flex items-baseline gap-2 mt-1">
+            <span id="sidebarPrice" class="text-4xl font-extrabold text-sc-primary"></span>
+            <span class="text-sc-on-muted text-sm" data-i18n="per_person_label">/ person</span>
+          </div>
+          <p id="sidebarNote" class="text-sm font-semibold text-sc-secondary mt-1"></p>
+          <div id="sidebarWarnings" class="mt-3 space-y-1"></div>
+        </div>
+
+        <!-- CTA -->
+        <div class="space-y-3 mb-6">
+          <button id="sidebarBookBtn" class="w-full bg-[#FF7A00] hover:bg-[#FF4E50] text-white py-4 rounded-full font-extrabold text-base transition-colors shadow-md">
+            <span data-i18n="btn.book">Book Now — WhatsApp</span>
+          </button>
+          <div class="flex flex-col items-center gap-0.5 text-[10px] text-sc-on-muted font-medium text-center">
+            <span data-i18n="sidebar.trust1">⚡ Instant confirmation</span>
+            <span data-i18n="sidebar.trust2">💬 Chat directly with a local expert</span>
+            <span data-i18n="sidebar.trust3">⏱ Takes less than 1 minute</span>
+          </div>
+        </div>
+
+        <!-- Trust -->
+        <div class="space-y-3 border-t border-sc-outline-light/25 pt-5">
+          <div class="flex items-center gap-3 text-sm font-medium text-sc-on-bg">
+            <span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings:'FILL' 1;">check_circle</span><span data-i18n="trust1">Free cancellation</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm font-medium text-sc-on-bg">
+            <span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings:'FILL' 1;">verified</span><span data-i18n="trust2">No hidden fees</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm font-medium text-sc-on-bg">
+            <span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings:'FILL' 1;">lock</span><span data-i18n="trust3">Secure booking</span>
+          </div>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="grid grid-cols-3 gap-3 mt-6 pt-5 border-t border-sc-outline-light/25">
+          <div class="text-center">
+            <span id="stat1Icon" class="material-symbols-outlined text-sc-secondary text-xl block mb-1">schedule</span>
+            <span id="stat1Label" class="text-xs font-bold text-sc-on-bg block"></span>
+            <span class="text-[10px] text-sc-on-muted" data-i18n="stat.access">Access</span>
+          </div>
+          <div class="text-center">
+            <span id="stat2Icon" class="material-symbols-outlined text-sc-secondary text-xl block mb-1">restaurant</span>
+            <span id="stat2Label" class="text-xs font-bold text-sc-on-bg block"></span>
+            <span class="text-[10px] text-sc-on-muted" data-i18n="stat.food">Food</span>
+          </div>
+          <div class="text-center">
+            <span id="stat3Icon" class="material-symbols-outlined text-sc-secondary text-xl block mb-1">directions_boat</span>
+            <span id="stat3Label" class="text-xs font-bold text-sc-on-bg block"></span>
+            <span class="text-[10px] text-sc-on-muted" data-i18n="stat.transport">Transport</span>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /sidebar -->
+
+  </div><!-- /12-col -->
+
+  <!-- ═══ CONTENT ═══ -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-8 space-y-16">
+
+      <!-- Why people love this beach club -->
+      <section class="reveal">
+        <div class="bg-sc-surface-low rounded-xl p-8">
+          <h2 class="text-2xl font-extrabold text-sc-primary mb-6" data-i18n="s.why_club">Why people love this beach club</h2>
+          <ul id="whyLoveList" class="space-y-4 mb-8"></ul>
+          <p id="clubDescription" class="text-sc-on-muted leading-relaxed text-base drop-cap"></p>
+        </div>
+      </section>
+
+      <!-- Club Areas -->
+      <section class="reveal">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-sc-on-muted mb-5" data-i18n="s.areas">Club Areas</h3>
+        <div id="clubAreas" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+      </section>
+
+      <!-- What's Included -->
+      <section class="reveal bg-sc-surface-low rounded-xl p-8">
+        <h3 class="text-2xl font-extrabold text-sc-primary mb-8" data-i18n="s.included">What's Included</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
+          <div id="includedList" class="space-y-3"></div>
+          <div id="excludedList" class="space-y-3"></div>
+        </div>
+      </section>
+
+      <!-- Your Day at the Beach Club -->
+      <section class="reveal">
+        <h3 class="text-2xl font-extrabold text-sc-primary mb-8" data-i18n="s.itinerary_club">Your Day at the Beach Club</h3>
+        <div id="itineraryList" class="timeline relative space-y-0"></div>
+      </section>
+
+      <!-- Perfect For -->
+      <section class="reveal">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-sc-on-muted mb-5" data-i18n="s.perfect_for">Perfect For</h3>
+        <div id="perfectForList" class="flex flex-wrap gap-3"></div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <section class="reveal text-white rounded-xl p-10 flex flex-col items-center text-center" style="background:linear-gradient(135deg,#012A44 0%,#0077B6 100%);box-shadow:0 12px 48px rgba(0,119,182,0.35);">
+        <h2 class="text-3xl font-extrabold mb-3" data-i18n="s.cta.heading">Ready to secure your spot?</h2>
+        <p class="text-sc-on-primary/70 mb-7 max-w-sm text-sm leading-relaxed" data-i18n="s.cta.body_club">Weekend dates sell out weeks in advance. Reserve your day pass now — no payment needed today.</p>
+        <button id="ctaBookBtn" class="bg-[#FF7A00] text-white px-10 py-4 rounded-full font-extrabold text-base hover:bg-[#FF4E50] transition-colors shadow-lg">
+          <span data-i18n="btn.secure">Secure Your Spot — WhatsApp</span>
+        </button>
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4 text-[11px] text-sc-on-primary/60">
+          <span data-i18n="s.cta.trust1_club">⚡ Limited daily capacity — reserve your spot now</span>
+          <span data-i18n="s.cta.trust2">💬 Local expert replies in minutes</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══ JS ═════════════════════════════════════════════════════ -->
+<script src="clubs-data.js"></script>
+<script>
+/* ── I18N ─────────────────────────── */
+let currentLang = 'en';
+const pageI18n = {
+  en: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOATS','nav.why':'WHY US','nav.tips':'TRAVEL TIPS','nav.contact':'CONTACT',
+    'bc.home':'Home','bc.clubs':'Beach Clubs',
+    'gallery.caption':'Click any photo to enlarge',
+    'limited.capacity':'⚡ Limited daily capacity',
+    'sidebar.price_label':'Day Pass Price','per_person_label':'/ person',
+    'btn.book':'Book Now — WhatsApp','btn.secure':'Secure Your Spot — WhatsApp',
+    'sidebar.trust1':'⚡ Instant confirmation','sidebar.trust2':'💬 Chat directly with a local expert','sidebar.trust3':'⏱ Takes less than 1 minute',
+    'trust1':'Free cancellation','trust2':'No hidden fees','trust3':'Secure booking',
+    'stat.access':'Access','stat.food':'Food','stat.transport':'Transport',
+    'modal.fname':'First Name','modal.lname':'Last Name','modal.date':'Date','modal.guests':'Guests',
+    'modal.total.label':'Total','modal.book':'Book via WhatsApp','modal.note':'🔒 Free · No payment now · Instant reply',
+    's.why_club':'Why people love this beach club','s.areas':'Club Areas','s.included':"What's Included",
+    's.itinerary_club':'Your Day at the Beach Club','s.perfect_for':'Perfect For',
+    's.cta.heading':'Ready to secure your spot?','s.cta.body_club':'Weekend dates sell out weeks in advance. Reserve your day pass now — no payment needed today.',
+    's.cta.trust1_club':'⚡ Limited daily capacity — reserve your spot now','s.cta.trust2':'💬 Local expert replies in minutes',
+    'guest':'guest','guests':'guests'
+  },
+  es: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOTES','nav.why':'POR QUÉ NOSOTROS','nav.tips':'CONSEJOS DE VIAJE','nav.contact':'CONTACTO',
+    'bc.home':'Inicio','bc.clubs':'Beach Clubs',
+    'gallery.caption':'Haz clic en cualquier foto para ampliar',
+    'limited.capacity':'⚡ Capacidad diaria limitada',
+    'sidebar.price_label':'Precio por Día','per_person_label':'/ persona',
+    'btn.book':'Reservar Ahora — WhatsApp','btn.secure':'Asegurar Mi Lugar — WhatsApp',
+    'sidebar.trust1':'⚡ Confirmación instantánea','sidebar.trust2':'💬 Chatea con un curador local','sidebar.trust3':'⏱ Tarda menos de 1 minuto',
+    'trust1':'Cancelación gratuita','trust2':'Sin tarifas ocultas','trust3':'Reserva segura',
+    'stat.access':'Acceso','stat.food':'Comida','stat.transport':'Transporte',
+    'modal.fname':'Nombre','modal.lname':'Apellido','modal.date':'Fecha','modal.guests':'Huéspedes',
+    'modal.total.label':'Total','modal.book':'Reservar por WhatsApp','modal.note':'🔒 Gratis · Sin pago ahora · Respuesta inmediata',
+    's.why_club':'Por qué a la gente le encanta este beach club','s.areas':'Áreas del Club','s.included':'Qué Incluye',
+    's.itinerary_club':'Tu Día en el Beach Club','s.perfect_for':'Perfecto Para',
+    's.cta.heading':'¿Listo para asegurar tu lugar?','s.cta.body_club':'Los fines de semana se agotan con semanas de anticipación. Reserva tu pase de día ahora — sin pago hoy.',
+    's.cta.trust1_club':'⚡ Capacidad limitada — reserva tu lugar ahora','s.cta.trust2':'💬 Experto local responde en minutos',
+    'guest':'huésped','guests':'huéspedes'
+  },
+  pt: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BARCOS','nav.why':'POR QUE NÓS','nav.tips':'DICAS DE VIAGEM','nav.contact':'CONTATO',
+    'bc.home':'Início','bc.clubs':'Beach Clubs',
+    'gallery.caption':'Clique em qualquer foto para ampliar',
+    'limited.capacity':'⚡ Capacidade diária limitada',
+    'sidebar.price_label':'Preço por Dia','per_person_label':'/ pessoa',
+    'btn.book':'Reservar Agora — WhatsApp','btn.secure':'Garantir Meu Lugar — WhatsApp',
+    'sidebar.trust1':'⚡ Confirmação instantânea','sidebar.trust2':'💬 Converse com um curador local','sidebar.trust3':'⏱ Leva menos de 1 minuto',
+    'trust1':'Cancelamento gratuito','trust2':'Sem taxas ocultas','trust3':'Reserva segura',
+    'stat.access':'Acesso','stat.food':'Comida','stat.transport':'Transporte',
+    'modal.fname':'Nome','modal.lname':'Sobrenome','modal.date':'Data','modal.guests':'Hóspedes',
+    'modal.total.label':'Total','modal.book':'Reservar pelo WhatsApp','modal.note':'🔒 Grátis · Sem pagamento agora · Resposta imediata',
+    's.why_club':'Por que as pessoas adoram este beach club','s.areas':'Áreas do Club','s.included':'O Que Está Incluído',
+    's.itinerary_club':'Seu Dia no Beach Club','s.perfect_for':'Perfeito Para',
+    's.cta.heading':'Pronto para garantir seu lugar?','s.cta.body_club':'Os fins de semana esgotam com semanas de antecedência. Reserve seu day pass agora — sem pagamento hoje.',
+    's.cta.trust1_club':'⚡ Capacidade limitada — reserve seu lugar agora','s.cta.trust2':'💬 Especialista local responde em minutos',
+    'guest':'hóspede','guests':'hóspedes'
+  }
+};
+function t(k){ return (pageI18n[currentLang]||{})[k] || pageI18n.en[k] || k; }
+function applyTranslations(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); }); }
+function setLang(l) { currentLang = l; applyTranslations(); updateDetailTotal(); }
+
+const WA_NUMBER = '573001234567';
+
+/* ── SHARED LIFESTYLE GALLERY IMAGES ── */
+const THUMB_1 = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBlVke5qSYsHFfjl0TQemUvUXGYHynZI4bOU3OiSzWtAnGb_uxIPze4xsdqvFt8xvSSgKqIyQDRO-TAfnipDzygMo1MYYYJHfBt7Jcq2JPmeLrm8zDyQHjMDWgiLFlX-QIVonYFswzkznbhewPUsll26s4mw7afi_OmZuMkoCSAmfYntSjg3Jj3u64X5NNc62skTZdzeB7XmEAb2zYHp1muGwLDJra7AXoThxb4MhwEaqXW08oBEzkVbsbDuUPIuPfzZGgtlqz4Sb-C';
+const THUMB_2 = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDOYPL1CNFSt0oSSzPvigU8DBQds8ejQ20pCKLfoWsehQJAexBtTc5iJ-Ae--AG_tZnYHbx0uysZ3-zAT-FerD9a5yeMT890phhOjoHQdaVyO1A2IkElhG1Vrja9ORN2N07o7XNtarHmf4bNvBtdGj5kPTyNd4igMrHjKGg2lDl9qUW6HwKcqiWdj3Dov9wKnmCJgDZNVbGl1NdMRMYDljnR_9iNWt_PaHg9W56zfjcxQSy9GJ-SnVOPzdQuycoElAh6LIQ6Q_tYkBx';
+
+/* ── CLUB DATA ──────────────────────── */
+const clubs = CLUBS_DATA;
+
+
+/* ── LOAD FROM URL ──────────────────── */
+const params = new URLSearchParams(window.location.search);
+const clubId = parseInt(params.get('id')) || 1;
+const club = clubs.find(c => c.id === clubId) || clubs[0];
+
+/* ── RENDER ─────────────────────────── */
+function renderClub() {
+  document.title = club.name.replace(/^[^\w]+/, '') + ' – Paradise Cartagena Tours';
+
+  // Breadcrumb
+  document.getElementById('breadcrumbName').textContent = club.emoji + ' ' + club.name;
+
+  // Badge
+  const bc = badgeCfgDetail[club.badge] || badgeCfgDetail.popular;
+  const badgeEl = document.getElementById('heroBadge');
+  badgeEl.textContent = bc.label;
+  badgeEl.style.background = bc.bg;
+  badgeEl.style.color = bc.color;
+
+  // Limited
+  if (club.limitedCapacity) document.getElementById('heroLimited').classList.remove('hidden');
+
+  // Hero
+  document.getElementById('heroTitle').textContent  = club.emoji + ' ' + club.name;
+  document.getElementById('heroSubtitle').textContent = club.subtitle;
+  document.getElementById('heroTagline').textContent  = club.tagline;
+
+  // Vibe tags
+  document.getElementById('vibeTagsRow').innerHTML = club.vibeLabels.map(v => `
+    <span class="bg-sc-surface-mid px-3 py-1 rounded-full text-xs font-bold text-sc-primary">${v}</span>`).join('');
+
+  // Specs
+  document.getElementById('heroSpecs').innerHTML = club.specs.map(s => `
+    <span class="flex items-center gap-1.5 group cursor-default">
+      <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">${s.icon}</span>
+      ${s.label}
+    </span>`).join('');
+
+  // Gallery – use imgs array if available, fall back to main img
+  const galleryImgs = (club.imgs && club.imgs.length) ? club.imgs : [club.img, club.img, club.img];
+  document.getElementById('gImg0').src = galleryImgs[0] || club.img;
+  document.getElementById('gImg0').alt = club.name;
+  document.getElementById('gImg1').src = galleryImgs[1] || galleryImgs[0];
+  document.getElementById('gImg1').alt = club.name;
+  document.getElementById('gImg2').src = galleryImgs[2] || galleryImgs[0];
+  document.getElementById('gImg2').alt = club.name;
+
+  // Sidebar
+  updatePrices();
+  document.getElementById('sidebarNote').textContent = club.includesNote;
+  if (club.sellsOut || club.limitedCapacity) {
+    const w = document.getElementById('sidebarWarnings');
+    if (club.sellsOut)        w.innerHTML += `<span class="block text-xs font-bold text-sc-error-bg uppercase tracking-tight">🔥 Sells out on weekends</span>`;
+    if (club.limitedCapacity) w.innerHTML += `<span class="block text-xs font-bold text-sc-error-bg uppercase tracking-tight">⚡ Limited daily capacity</span>`;
+  }
+
+  // Quick stat icons
+  club.stats.forEach((s, i) => {
+    const n = i + 1;
+    document.getElementById('stat' + n + 'Icon').textContent  = s.icon;
+    document.getElementById('stat' + n + 'Label').textContent = s.label;
+  });
+
+  // Sticky bar
+  document.getElementById('stickyName').textContent = club.name.replace(/^[^\w]+/, '');
+
+  // Why love
+  document.getElementById('whyLoveList').innerHTML = club.whyLove.map(w => `
+    <li class="flex items-center gap-3 text-sc-primary font-semibold text-sm">
+      <span class="material-symbols-outlined text-sc-primary-container flex-shrink-0" style="font-variation-settings:'FILL' 1;">${w.icon}</span>
+      ${w.text}
+    </li>`).join('');
+
+  // Description
+  document.getElementById('clubDescription').textContent = club.description;
+
+  // Club areas
+  document.getElementById('clubAreas').innerHTML = club.clubAreas.map(a => `
+    <div class="p-4 bg-sc-surface-low rounded-xl text-center font-bold text-sc-primary text-sm hover:bg-sc-surface-mid transition-colors cursor-default border border-sc-outline-light/20">
+      🏖 ${a}
+    </div>`).join('');
+
+  // Included / excluded
+  document.getElementById('includedList').innerHTML = club.included.map(i => `
+    <div class="flex items-center gap-3 text-sm font-medium text-sc-on-bg">
+      <span class="material-symbols-outlined text-green-600 flex-shrink-0" style="font-variation-settings:'FILL' 1;">check_circle</span>${i}
+    </div>`).join('');
+  document.getElementById('excludedList').innerHTML = club.excluded.map(e => `
+    <div class="flex items-center gap-3 text-sm font-medium text-sc-on-muted">
+      <span class="material-symbols-outlined text-sc-error-bg flex-shrink-0">cancel</span>${e}
+    </div>`).join('');
+
+  // Itinerary
+  document.getElementById('itineraryList').innerHTML = club.itinerary.map((s, i) => `
+    <div class="relative pl-10 pb-8 group ${i === club.itinerary.length-1 ? 'pb-0' : ''}">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-sc-primary flex items-center justify-center ring-4 ring-sc-surface group-hover:scale-110 transition-transform">
+        <span class="text-[9px] text-sc-on-primary font-bold">${s.step}</span>
+      </div>
+      <h4 class="font-bold text-base text-sc-primary mb-0.5">${s.emoji} ${s.title}</h4>
+      <p class="text-sc-on-muted text-sm">${s.desc}</p>
+    </div>`).join('');
+
+  // Perfect For
+  const pfIcons = { 'Parties':'celebration','Bachelorette groups':'diamond','Friend trips':'groups','Solo travellers':'person','Couples':'favorite','Foodies':'restaurant','Relaxation seekers':'self_improvement','First-time visitors':'explore','Luxury travellers':'star','Honeymoon couples':'favorite','Special occasions':'celebration','Wellness seekers':'spa','Free spirits':'air','Music lovers':'music_note','Budget-conscious travellers':'savings','Nature lovers':'eco','Families':'family_restroom','Conscious travellers':'public','Snorkel enthusiasts':'scuba_diving','Anniversaries':'favorite','Honeymoon stays':'favorite','Romantic escapes':'favorite','VIP travellers':'diamond_4','Foodie experiences':'restaurant','Culture seekers':'palette','Authentic experience hunters':'explore','Yoga practitioners':'self_improvement','Solo retreats':'person','Digital detox':'do_not_disturb_on' };
+  document.getElementById('perfectForList').innerHTML = club.perfectFor.map(p => `
+    <div class="flex items-center gap-2 bg-sc-surface-mid px-5 py-3 rounded-full font-semibold text-sm text-sc-primary cursor-default hover:bg-sc-surface-high transition-colors">
+      <span class="material-symbols-outlined text-sm">${pfIcons[p] || 'beach_access'}</span>${p}
+    </div>`).join('');
+}
+
+/* ── PRICES ─────────────────────────── */
+function updatePrices() {
+  const p = fmt(club.priceCOP);
+  document.getElementById('sidebarPrice').textContent = p;
+  document.getElementById('stickyPrice').textContent  = p;
+}
+
+document.getElementById('currencySelect').addEventListener('change', function() {
+  currentCurrency = this.value;
+  updatePrices();
+  updateDetailTotal();
+});
+loadCurrencyRates(() => {
+  updatePrices();
+  updateDetailTotal();
+});
+
+/* ── LIGHTBOX ───────────────────────── */
+const lbImgs = (club.imgs && club.imgs.length) ? club.imgs : [club.img];
+let lbIndex = 0;
+
+function openLightbox(idx) {
+  lbIndex = idx;
+  document.getElementById('lightboxImg').src = lbImgs[lbIndex];
+  const lb = document.getElementById('lightbox');
+  lb.style.display = 'flex';
+  requestAnimationFrame(() => lb.style.opacity = '1');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e) e.stopPropagation();
+  const lb = document.getElementById('lightbox');
+  lb.style.opacity = '0';
+  setTimeout(() => { lb.style.display = 'none'; }, 260);
+  document.body.style.overflow = '';
+}
+function shiftLightbox(dir, e) {
+  if (e) e.stopPropagation();
+  lbIndex = (lbIndex + dir + lbImgs.length) % lbImgs.length;
+  const img = document.getElementById('lightboxImg');
+  img.style.opacity = '0';
+  setTimeout(() => { img.src = lbImgs[lbIndex]; img.style.opacity = '1'; }, 140);
+}
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lightbox').style.display === 'flex') {
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+  }
+});
+
+/* ── MODAL ──────────────────────────── */
+function setupLightboxSwipe() {
+  const img = document.getElementById('lightboxImg');
+  if (!img) return;
+  let startX = 0;
+  let startY = 0;
+  let lastX = 0;
+  let swiping = false;
+
+  img.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    startX = lastX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    swiping = false;
+  }, { passive: true });
+
+  img.addEventListener('touchmove', e => {
+    if (!startX || e.touches.length !== 1) return;
+    lastX = e.touches[0].clientX;
+    const dx = lastX - startX;
+    const dy = e.touches[0].clientY - startY;
+    if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      swiping = true;
+      e.preventDefault();
+      img.style.transform = `translateX(${dx * 0.18}px) scale(1)`;
+    }
+  }, { passive: false });
+
+  img.addEventListener('touchend', e => {
+    if (!startX) return;
+    const dx = lastX - startX;
+    img.style.transform = '';
+    if (swiping && Math.abs(dx) > 48) shiftLightbox(dx < 0 ? 1 : -1, e);
+    startX = startY = lastX = 0;
+    swiping = false;
+  }, { passive: false });
+}
+setupLightboxSwipe();
+
+function updateDetailTotal() {
+  const raw = document.getElementById('mGuests').value;
+  const n = parseInt(raw) || 1;
+  const totalCOP = club.priceCOP * n;
+  const perPerson = fmt(club.priceCOP);
+  const total = fmt(totalCOP);
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  document.getElementById('mTotalPrice').textContent = total + currCode;
+  const unit = n === 1 ? t('guest') : t('guests');
+  document.getElementById('mTotalSubtext').textContent = `(${perPerson} × ${raw} ${unit})`;
+}
+
+function openModal() {
+  document.getElementById('modalImg').src = club.img;
+  document.getElementById('modalName').textContent = club.emoji + ' ' + club.name;
+  document.getElementById('mDate').min   = new Date().toISOString().split('T')[0];
+  document.getElementById('mDate').value = '';
+  document.getElementById('mGuests').value = '1';
+  updateDetailTotal();
+  document.getElementById('bookingModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('mGuests').addEventListener('change', updateDetailTotal);
+function closeModal() {
+  document.getElementById('bookingModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+/* ── WHATSAPP ───────────────────────── */
+function sendWA() {
+  const first  = document.getElementById('mFirstName').value.trim() || 'Guest';
+  const last   = document.getElementById('mLastName').value.trim();
+  const date   = document.getElementById('mDate').value   || 'TBD';
+  const guests = document.getElementById('mGuests').value || '2';
+  const name   = last ? first + ' ' + last : first;
+  const n = parseInt(guests) || 1;
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  const totalStr = fmt(club.priceCOP * n) + currCode;
+  const msg = `Hi! I'd like to book a day pass to ${club.emoji} ${club.name}.\n\nDate: ${date}\nGuests: ${guests}\n💰 Total: ${totalStr}\nName: ${name}\n\nPlease confirm availability and pricing. Thanks!`;
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+/* ── WIRE BUTTONS ───────────────────── */
+['navBookBtn','sidebarBookBtn','stickyBookBtn','ctaBookBtn'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', openModal);
+});
+
+/* ── SCROLL REVEAL + STICKY BAR ────── */
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('stickyBar');
+  if (window.scrollY > 500) bar.classList.add('show');
+  else bar.classList.remove('show');
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 120) el.classList.add('visible');
+  });
+});
+
+/* ── ACTIVE NAV ─────────────────────── */
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page) a.classList.add('nav-active');
+  });
+})();
+
+/* ── INIT ───────────────────────────── */
+renderClub();
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 120) el.classList.add('visible');
+  });
+}, 100);
+</script>
+<script>
+const CURR_SYMBOLS={USD:'$',COP:'$',EUR:'€',GBP:'£'};
+function toggleDrop(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn'),o=d.classList.contains('open');closeAllDrops();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true');}}
+function closeAllDrops(){['lang','curr'].forEach(function(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn');if(d)d.classList.remove('open');if(b)b.setAttribute('aria-expanded','false');});}
+function pickLang(v){document.getElementById('langLabel').textContent=v.toUpperCase();document.querySelectorAll('#langDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();setLang(v);}
+function pickCurr(v){document.getElementById('currLabel').textContent=v;document.getElementById('currSymbol').textContent=CURR_SYMBOLS[v]||'$';document.querySelectorAll('#currDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();var s=document.getElementById('currencySelect');if(s){s.value=v;s.dispatchEvent(new Event('change'));}}
+document.addEventListener('click',function(e){if(!e.target.closest('.lux-chip-wrap'))closeAllDrops();});
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>

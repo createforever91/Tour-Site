@@ -1,0 +1,13 @@
+.env
+.env.local
+node_modules/
+__pycache__/
+*.py[cod]
+.claude/
+.codex-remote-attachments/
+.DS_Store
+Thumbs.db
+PCT_*Knowledge_Base*.pdf
+generate_kb.py
+generate_tours_pricing_pdf.py
+*beach_clubs_raw.txt

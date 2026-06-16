@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beach Clubs – Paradise Cartagena Tours</title>
+<meta name="description" content="Discover Cartagena's best beach clubs. Book your spot instantly via WhatsApp."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "sc-bg":           "#fff4ef",
+          "sc-surface-low":  "#ffede4",
+          "sc-surface-mid":  "#ffe3d2",
+          "sc-surface-high": "#ffdcc6",
+          "sc-surface-card": "#ffffff",
+          "sc-primary":           "#0077B6",
+          "sc-primary-dim":       "#005f8e",
+          "sc-secondary":           "#00A8A8",
+          "sc-secondary-bg": "#76dfff",
+          "sc-tertiary-bg":  "#ffc703",
+          "sc-on-bg":        "#4a2506",
+          "sc-on-muted":     "#7f512e",
+          "sc-error-bg":     "#f95630",
+          "sc-on-error":     "#ffefec",
+        },
+        borderRadius: { DEFAULT:"1rem", lg:"2rem", xl:"3rem", full:"9999px" },
+        fontFamily: { headline:["Plus Jakarta Sans"], body:["Manrope"] }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  body { font-family:'Manrope',sans-serif; background:#fff4ef; }
+  h1,h2,h3,h4 { font-family:'Plus Jakarta Sans',sans-serif; }
+  .chip-active { background:#FF7A00 !important; color:#ffffff !important; }
+  .card-shadow { box-shadow:0 4px 40px -8px rgba(74,37,6,0.10); }
+  .card-shadow:hover { box-shadow:0 16px 48px -4px rgba(0,119,182,0.20), 0 0 0 1px rgba(0,168,168,0.15); }
+  .modal-bg { background:rgba(74,37,6,0.5); backdrop-filter:blur(6px); }
+  .wa-pulse { animation:waPulse 2.5s infinite; }
+  @keyframes waPulse {
+    0%,100% { box-shadow:0 8px 32px rgba(37,211,102,0.4); }
+    50%      { box-shadow:0 8px 48px rgba(37,211,102,0.7); }
+  }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+  input[type="date"]::-webkit-calendar-picker-indicator { opacity:.5; cursor:pointer; }
+  .lux-chip { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 10px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;font-size:0.72rem;font-weight:500;color:#fff;white-space:nowrap;user-select:none; }
+  .lux-chip:hover { background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);transform:translateY(-1px); }
+  .lux-chip:active { transform:scale(0.97); }
+  .lux-chip-wrap { position:relative; }
+  .lux-dropdown { position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:6px;min-width:140px;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease; }
+  .lux-dropdown.open { opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0); }
+  .lux-dropdown-item { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:400;color:#1a1a1a;cursor:pointer;transition:background .12s; }
+  .lux-dropdown-item:hover { background:rgba(0,0,0,0.05); }
+  .lux-dropdown-item.selected { font-weight:700;background:rgba(0,119,182,0.07);color:#0077B6; }
+  .lux-dropdown-item .item-code { font-weight:700;font-size:13px; }
+  .lux-dropdown-item .item-name { color:#666;font-size:12px; }
+
+  /* ── Premium Card System ──────────────────────────────────────────── */
+  .pc-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+    position: relative;
+    background: #ffffff;
+  }
+  .pc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+  }
+  .pc-card .card-img {
+    transition: transform 0.4s ease;
+  }
+  .pc-card:hover .card-img {
+    transform: scale(1.05);
+  }
+  .pc-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 5px 10px; font-size: 11px; line-height: 1.4;
+    border-radius: 999px; color: #fff; font-weight: 700;
+    z-index: 10; white-space: nowrap; letter-spacing: 0.04em;
+  }
+  .pc-btn-secondary { transition: all 0.2s ease !important; }
+  .pc-btn-secondary:hover {
+    background: #00A8A8 !important;
+    color: #ffffff !important;
+    border-color: #00A8A8 !important;
+  }
+</style>
+</head>
+<body class="bg-sc-bg text-sc-on-bg min-h-screen" data-page="beach-clubs">
+
+<!-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html"       data-nav="tours"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tours">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.beach">BEACH CLUBS</a>
+    <a href="boats.html"       data-nav="boats"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.boats">BOATS</a>
+    <a href="why-us.html"      data-nav="why-us"      class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.why">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tips">TRAVEL TIPS</a>
+    <a href="contact.html"     data-nav="contact"     class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.contact">CONTACT</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <div class="hidden sm:flex lux-chip-wrap" id="langWrap">
+      <button class="lux-chip" id="langBtn" onclick="toggleDrop('lang')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:1rem;line-height:1;">🌐</span>
+        <span id="langLabel">EN</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="langDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="en" onclick="pickLang('en')"><span class="item-code">EN</span><span class="item-name">English</span></div>
+        <div class="lux-dropdown-item" data-val="es" onclick="pickLang('es')"><span class="item-code">ES</span><span class="item-name">Español</span></div>
+        <div class="lux-dropdown-item" data-val="pt" onclick="pickLang('pt')"><span class="item-code">PT</span><span class="item-name">Português</span></div>
+      </div>
+    </div>
+    <div class="hidden sm:flex lux-chip-wrap" id="currWrap">
+      <button class="lux-chip" id="currBtn" onclick="toggleDrop('curr')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:0.85rem;line-height:1;font-weight:600;" id="currSymbol">$</span>
+        <span id="currLabel">USD</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="currDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="USD" onclick="pickCurr('USD')"><span class="item-code">USD</span><span class="item-name">US Dollar</span></div>
+        <div class="lux-dropdown-item" data-val="COP" onclick="pickCurr('COP')"><span class="item-code">COP</span><span class="item-name">Colombian Peso</span></div>
+        <div class="lux-dropdown-item" data-val="EUR" onclick="pickCurr('EUR')"><span class="item-code">EUR</span><span class="item-name">Euro</span></div>
+        <div class="lux-dropdown-item" data-val="GBP" onclick="pickCurr('GBP')"><span class="item-code">GBP</span><span class="item-name">British Pound</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ PAGE HEADER ═════════════════════════════════════════════════════════ -->
+<div class="pt-28 pb-4 px-6 md:px-8 max-w-7xl mx-auto">
+  <div class="mb-2 flex items-center gap-2 text-sc-on-muted text-sm font-medium">
+    <a href="index.html" class="hover:text-sc-primary transition-colors" data-i18n="bc.home">Home</a>
+    <span class="material-symbols-outlined text-base">chevron_right</span>
+    <span class="text-sc-primary font-bold" data-i18n="bc.page">Beach Clubs</span>
+  </div>
+  <h1 class="text-3xl md:text-4xl font-extrabold text-sc-on-bg tracking-tight" data-i18n="page.title">Beach Clubs</h1>
+  <p class="text-sc-on-muted mt-1 text-sm">Discover <span id="clubCount">8</span> <span data-i18n="page.sub.suffix">exclusive beach clubs in Cartagena</span></p>
+</div>
+
+<!-- ═══ FILTER TABS ══════════════════════════════════════════════════════════ -->
+<div class="flex justify-center px-6 mb-10 mt-6">
+  <div class="inline-flex bg-sc-surface-low p-1.5 rounded-full shadow-sm gap-1 flex-wrap justify-center" id="filterChips">
+    <button onclick="filterClubs('all')"     class="chip chip-active flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+      <span class="material-symbols-outlined text-base leading-none">travel_explore</span> <span data-i18n="filter.all">All Clubs</span>
+    </button>
+    <button onclick="filterClubs('party')"   class="chip flex items-center gap-2 text-sc-on-muted hover:bg-sc-surface-high px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+      <span class="material-symbols-outlined text-base leading-none">celebration</span> <span data-i18n="filter.party">Party</span>
+    </button>
+    <button onclick="filterClubs('chill')"   class="chip flex items-center gap-2 text-sc-on-muted hover:bg-sc-surface-high px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+      <span class="material-symbols-outlined text-base leading-none">self_improvement</span> <span data-i18n="filter.chill">Chill</span>
+    </button>
+    <button onclick="filterClubs('luxury')"  class="chip flex items-center gap-2 text-sc-on-muted hover:bg-sc-surface-high px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+      <span class="material-symbols-outlined text-base leading-none">diamond</span> <span data-i18n="filter.luxury">Luxury</span>
+    </button>
+    <button onclick="filterClubs('eco')"     class="chip flex items-center gap-2 text-sc-on-muted hover:bg-sc-surface-high px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+      <span class="material-symbols-outlined text-base leading-none">eco</span> <span data-i18n="filter.eco">Eco</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ CARD GRID ════════════════════════════════════════════════════════════ -->
+<main class="max-w-7xl mx-auto px-6 md:px-8 pb-28">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="clubsGrid"></div>
+</main>
+
+<!-- ═══ BOOKING MODAL ════════════════════════════════════════════════════════ -->
+<div id="modalOverlay" class="fixed inset-0 z-[200] modal-bg flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeModalOutside(event)">
+  <div id="modal" class="bg-sc-surface-card w-full max-w-md rounded-xl overflow-hidden card-shadow translate-y-8 transition-transform duration-300">
+    <div class="relative h-44 overflow-hidden">
+      <img id="modalImg" src="" alt="" class="w-full h-full object-cover"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 right-0 p-5">
+        <h3 id="modalName" class="text-white font-extrabold text-lg leading-tight"></h3>
+        <span id="modalMeta" class="text-white/75 text-sm font-medium"></span>
+      </div>
+      <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-sc-on-bg hover:bg-white transition-colors z-10">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </div>
+    <div class="p-6 md:p-8">
+      <h4 class="text-base font-bold mb-5 text-sc-on-bg" data-i18n="modal.title">Enter your details to book</h4>
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-sc-on-muted mb-2 uppercase tracking-wider" data-i18n="modal.fname">First Name</label>
+            <input id="firstName" type="text" placeholder="Maria" class="w-full bg-sc-surface-low rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-sc-primary/30 border-0"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-sc-on-muted mb-2 uppercase tracking-wider" data-i18n="modal.lname">Last Name</label>
+            <input id="lastName" type="text" placeholder="González" class="w-full bg-sc-surface-low rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-sc-primary/30 border-0"/>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-sc-on-muted mb-2 uppercase tracking-wider" data-i18n="modal.date">Date</label>
+            <input id="bookDate" type="date" class="w-full bg-sc-surface-low rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-sc-primary/30 border-0"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-sc-on-muted mb-2 uppercase tracking-wider" data-i18n="modal.guests">Guests</label>
+            <select id="numGuests" class="w-full bg-sc-surface-low rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-sc-primary/30 border-0 cursor-pointer">
+              <option selected>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option>
+              <option>7</option><option>8</option><option>9</option><option>10+</option>
+            </select>
+          </div>
+        </div>
+        <!-- Total price -->
+        <div class="bg-sc-surface-low rounded-2xl px-5 py-4 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-sc-on-muted uppercase tracking-wider mb-0.5" data-i18n="modal.total.label">Total</p>
+            <p id="modalTotalSubtext" class="text-xs text-sc-on-muted mt-0.5"></p>
+          </div>
+          <p id="modalTotalPrice" class="text-2xl font-extrabold text-sc-primary"></p>
+        </div>
+        <button onclick="bookViaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-full font-black text-base flex items-center justify-center gap-3 transition-all mt-2">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">chat</span>
+          <span data-i18n="modal.cta">Book via WhatsApp</span>
+        </button>
+        <p class="text-center text-xs text-sc-on-muted font-medium" data-i18n="modal.note">🔒 Free, no payment required. Instant response.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="clubs-data.js"></script>
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const WA_NUMBER = '573001234567';
+
+function setCurrency(c) { currentCurrency = c; renderClubs(); }
+
+let currentLang = 'en';
+const pageI18n = {
+  en: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOATS','nav.why':'WHY US','nav.tips':'TRAVEL TIPS','nav.contact':'CONTACT',
+    'bc.home':'Home','bc.page':'Beach Clubs',
+    'page.title':'Beach Clubs','page.sub.suffix':'exclusive beach clubs in Cartagena',
+    'filter.all':'All Clubs','filter.party':'Party','filter.chill':'Chill','filter.luxury':'Luxury','filter.eco':'Eco',
+    'wa.tooltip':'Chat with a local expert',
+    'modal.title':'Enter your details to book','modal.fname':'First Name','modal.lname':'Last Name','modal.date':'Date','modal.guests':'Guests','modal.total.label':'Total','modal.cta':'Book via WhatsApp','modal.note':'🔒 Free, no payment required. Instant response.',
+    'from':'From','check':'Check Availability','details':'View Details','guest':'guest','guests':'guests',
+  },
+  es: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOTES','nav.why':'POR QUÉ NOSOTROS','nav.tips':'CONSEJOS DE VIAJE','nav.contact':'CONTACTO',
+    'bc.home':'Inicio','bc.page':'Beach Clubs',
+    'page.title':'Beach Clubs','page.sub.suffix':'beach clubs exclusivos en Cartagena',
+    'filter.all':'Todos','filter.party':'Fiesta','filter.chill':'Relajante','filter.luxury':'Lujo','filter.eco':'Eco',
+    'wa.tooltip':'Chatea con un curador',
+    'modal.title':'Ingresa tus datos para reservar','modal.fname':'Nombre','modal.lname':'Apellido','modal.date':'Fecha','modal.guests':'Huéspedes','modal.total.label':'Total','modal.cta':'Reservar por WhatsApp','modal.note':'🔒 Gratis, sin pago requerido. Respuesta inmediata.',
+    'from':'Desde','check':'Consultar Disponibilidad','details':'Ver Detalles','guest':'huésped','guests':'huéspedes',
+  },
+  pt: {
+    'nav.tours':'PASSEIOS','nav.beach':'BEACH CLUBS','nav.boats':'BARCOS','nav.why':'POR QUE NÓS','nav.tips':'DICAS DE VIAGEM','nav.contact':'CONTATO',
+    'bc.home':'Início','bc.page':'Beach Clubs',
+    'page.title':'Beach Clubs','page.sub.suffix':'beach clubs exclusivos em Cartagena',
+    'filter.all':'Todos','filter.party':'Festa','filter.chill':'Relaxante','filter.luxury':'Luxo','filter.eco':'Eco',
+    'wa.tooltip':'Converse com um curador',
+    'modal.title':'Insira seus dados para reservar','modal.fname':'Nome','modal.lname':'Sobrenome','modal.date':'Data','modal.guests':'Hóspedes','modal.total.label':'Total','modal.cta':'Reservar pelo WhatsApp','modal.note':'🔒 Grátis, sem pagamento. Resposta imediata.',
+    'from':'A partir de','check':'Verificar Disponibilidade','details':'Ver Detalhes','guest':'hóspede','guests':'hóspedes',
+  }
+};
+function t(k){ return (pageI18n[currentLang]||{})[k] || pageI18n.en[k] || k; }
+function applyTranslations(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); }); }
+function setLang(l){ currentLang = l; applyTranslations(); renderClubs(); }
+
+let activeFilter = 'all';
+
+function filterClubs(f) {
+  activeFilter = f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('chip-active'));
+  document.querySelectorAll('.chip').forEach(c => {
+    if (c.getAttribute('onclick') === `filterClubs('${f}')`) c.classList.add('chip-active');
+  });
+  renderClubs();
+}
+
+function renderClubs() {
+  const filtered = activeFilter === 'all' ? CLUBS_DATA : CLUBS_DATA.filter(c => c.vibeKey === activeFilter);
+  document.getElementById('clubCount').textContent = filtered.length;
+  document.getElementById('clubsGrid').innerHTML = filtered.map(club => {
+    const b = badgeCfg[club.badge] || badgeCfg.popular;
+    return `
+    <div class="group pc-card flex flex-col">
+      <div class="relative h-56 overflow-hidden cursor-pointer" onclick="openModal(${club.id})">
+        <img alt="${club.name}" class="card-img w-full h-full object-cover" src="${club.img}" loading="lazy"/>
+        <span class="pc-badge ${b.bg}">${b.label}</span>
+        <span style="position:absolute;top:12px;right:12px;padding:5px 10px;font-size:11px;border-radius:999px;background:rgba(0,119,182,0.75);backdrop-filter:blur(6px);color:#fff;font-weight:700;z-index:10;">${club.vibe}</span>
+      </div>
+      <div class="p-6 space-y-4 flex-grow flex flex-col">
+        <div class="space-y-2">
+          <h3 class="text-lg font-bold text-sc-on-bg leading-tight cursor-pointer" onclick="openModal(${club.id})">${club.name}</h3>
+          <p class="text-sc-on-muted text-sm leading-relaxed">${club.subtitle}</p>
+          <div class="flex flex-wrap items-center gap-3 text-sc-on-muted text-xs mt-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-base text-sc-secondary">${club.f1Icon}</span>
+              <span>${club.f1}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-base text-sc-secondary">${club.f2Icon}</span>
+              <span>${club.f2}</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-auto pt-4 border-t border-sc-surface-high space-y-4">
+          <div>
+            <span class="text-xs text-sc-on-muted uppercase font-bold tracking-wide block mb-0.5">${t('from')}</span>
+            <span class="text-xl font-black text-sc-on-bg">${fmt(club.priceCOP)}</span>
+            <span class="text-sm font-medium text-sc-on-muted"> / person</span>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openModal(${club.id})" class="flex-1 bg-[#FF7A00] text-white px-4 py-2.5 rounded-full font-bold text-sm hover:bg-[#FF4E50] transition-all active:scale-95 shadow-md">
+              ${t('check')}
+            </button>
+            <a href="club-detail.html?id=${club.id}" class="pc-btn-secondary flex-1 border-2 border-[#00A8A8] text-[#00A8A8] px-4 py-2.5 rounded-full font-bold text-sm active:scale-95 text-center">
+              ${t('details')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── MODAL ────────────────────────────────────────────────────────────────────
+let activeClub = null;
+
+function openModal(id) {
+  activeClub = CLUBS_DATA.find(c => c.id === id);
+  if (!activeClub) return;
+  document.getElementById('modalImg').src  = activeClub.img;
+  document.getElementById('modalImg').alt  = activeClub.name;
+  document.getElementById('modalName').textContent = activeClub.name;
+  document.getElementById('modalMeta').textContent = `${activeClub.vibe} · ${fmt(activeClub.priceCOP)} / person`;
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('bookDate').min   = today;
+  document.getElementById('bookDate').value = '';
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value  = '';
+  document.getElementById('numGuests').value = '1';
+  updateModalTotal();
+  document.getElementById('modalOverlay').classList.remove('opacity-0','pointer-events-none');
+  document.getElementById('modal').classList.remove('translate-y-8');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.add('opacity-0','pointer-events-none');
+  document.getElementById('modal').classList.add('translate-y-8');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function updateModalTotal() {
+  if (!activeClub) return;
+  const raw = document.getElementById('numGuests').value;
+  const n = parseInt(raw) || 1;
+  const totalCOP = activeClub.priceCOP * n;
+  const perPerson = fmt(activeClub.priceCOP);
+  const total = fmt(totalCOP);
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  document.getElementById('modalTotalPrice').textContent = total + currCode;
+  const unit = n === 1 ? t('guest') : t('guests');
+  document.getElementById('modalTotalSubtext').textContent = `(${perPerson} × ${raw} ${unit})`;
+}
+
+document.getElementById('numGuests').addEventListener('change', updateModalTotal);
+
+function bookViaWhatsApp() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const date      = document.getElementById('bookDate').value;
+  const guests    = document.getElementById('numGuests').value;
+  if (!firstName || !lastName) { alert('Please enter your first and last name.'); return; }
+  if (!date) { alert('Please select a date.'); return; }
+  const fmtDate = new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const n = parseInt(guests) || 1;
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  const totalStr = fmt(activeClub.priceCOP * n) + currCode;
+  const msg = `Hello! I'd like to book *${activeClub.name}*\n\n📅 Date: ${fmtDate}\n👥 Guests: ${guests}\n💰 Total: ${totalStr}\n👤 Name: ${firstName} ${lastName}\n\nCan you confirm availability and details?`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function openWA() {
+  const msg = "Hello! I'd like to learn more about your beach clubs in Cartagena. Can you help me?";
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  return false;
+}
+
+// ── ACTIVE NAV ───────────────────────────────────────────────────────────────
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    if(a.dataset.nav === page) a.classList.add('nav-active');
+  });
+})();
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+renderClubs();
+loadCurrencyRates(renderClubs);
+</script>
+<script>
+const CURR_SYMBOLS={USD:'$',COP:'$',EUR:'€',GBP:'£'};
+function toggleDrop(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn'),o=d.classList.contains('open');closeAllDrops();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true');}}
+function closeAllDrops(){['lang','curr'].forEach(function(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn');if(d)d.classList.remove('open');if(b)b.setAttribute('aria-expanded','false');});}
+function pickLang(v){document.getElementById('langLabel').textContent=v.toUpperCase();document.querySelectorAll('#langDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();setLang(v);}
+function pickCurr(v){document.getElementById('currLabel').textContent=v;document.getElementById('currSymbol').textContent=CURR_SYMBOLS[v]||'$';document.querySelectorAll('#currDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();setCurrency(v);}
+document.addEventListener('click',function(e){if(!e.target.closest('.lux-chip-wrap'))closeAllDrops();});
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>

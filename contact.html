@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact – Paradise Cartagena Tours</title>
+<script>window.location.replace('index.html#how');</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  body { font-family:'Manrope',sans-serif; }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+</style>
+</head>
+<body class="bg-[#012A44] text-[#e2e2e5] min-h-screen" data-page="contact">
+
+<!-- NAVBAR -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html"       data-nav="tours"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BEACH CLUBS</a>
+    <a href="boats.html"       data-nav="boats"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BOATS</a>
+    <a href="why-us.html"      data-nav="why-us"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TRAVEL TIPS</a>
+    <a href="contact.html"     data-nav="contact"      class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">CONTACT</a>
+  </nav>
+  <a href="index.html" class="flex items-center gap-2 px-5 py-2 bg-[#00A8A8] text-white font-black text-[0.72rem] tracking-widest uppercase hover:bg-[#007f7f] transition-all">
+    <span class="material-symbols-outlined text-sm leading-none" style="font-variation-settings:'FILL' 1;">arrow_back</span>
+    BACK HOME
+  </a>
+</header>
+
+<!-- PLACEHOLDER -->
+<div class="flex flex-col items-center justify-center min-h-screen text-center px-6">
+  <p class="text-[#00A8A8] text-xs font-bold tracking-widest uppercase mb-4">Coming Soon</p>
+  <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-4" style="font-family:'Epilogue',sans-serif;">Contact</h1>
+  <p class="text-[#cfc5b8] text-lg max-w-md">This page is being designed. Check back soon.</p>
+</div>
+
+<script>
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    if(a.dataset.nav === page) a.classList.add('nav-active');
+  });
+})();
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Boats – Paradise Cartagena Tours</title>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "sc-primary":              "#0077B6",
+        "sc-primary-dim":         "#005f8e",
+        "sc-primary-container":   "#FF7A00",
+        "sc-on-primary":          "#ffffff",
+        "sc-on-primary-container":"#401500",
+        "sc-secondary":           "#00A8A8",
+        "sc-secondary-container": "#76dfff",
+        "sc-on-secondary":        "#e0f6ff",
+        "sc-tertiary":            "#725800",
+        "sc-tertiary-container":  "#ffc703",
+        "sc-on-tertiary":         "#fff1d8",
+        "sc-on-tertiary-container":"#584300",
+        "sc-surface":             "#fff4ef",
+        "sc-surface-dim":         "#ffc9a6",
+        "sc-surface-container":   "#ffe3d2",
+        "sc-surface-container-low":"#ffede4",
+        "sc-surface-container-high":"#ffdcc6",
+        "sc-surface-lowest":      "#ffffff",
+        "sc-on-surface":          "#4a2506",
+        "sc-on-surface-variant":  "#7f512e",
+        "sc-outline":             "#9e6b47",
+        "sc-outline-variant":     "#dba078",
+        "sc-error-container":     "#f95630",
+        "sc-on-error-container":  "#520c00",
+      },
+      borderRadius: {
+        DEFAULT: "1rem",
+        lg: "2rem",
+        xl: "3rem",
+        full: "9999px",
+      },
+      fontFamily: {
+        headline: ["Plus Jakarta Sans"],
+        body:     ["Plus Jakarta Sans"],
+        label:    ["Plus Jakarta Sans"],
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+
+  /* Filter chip active */
+  .chip-active {
+    background-color: #FF7A00 !important;
+    color: #ffffff !important;
+  }
+
+  /* Card hover */
+  .boat-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  /* boat-card hover handled by .pc-card system */
+  .boat-card:hover .card-img { transform: scale(1.08); }
+  .card-img { transition: transform 0.5s ease; }
+
+  /* Modal */
+  #bookingModal { transition: opacity 0.2s ease; }
+  #bookingModal.hidden { opacity:0; pointer-events:none; }
+
+  /* Currency select */
+  select { -webkit-appearance: none; appearance: none; }
+  .lux-chip { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 10px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;font-size:0.72rem;font-weight:500;color:#fff;white-space:nowrap;user-select:none; }
+  .lux-chip:hover { background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);transform:translateY(-1px); }
+  .lux-chip:active { transform:scale(0.97); }
+  .lux-chip-wrap { position:relative; }
+  .lux-dropdown { position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:6px;min-width:140px;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease; }
+  .lux-dropdown.open { opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0); }
+  .lux-dropdown-item { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:400;color:#1a1a1a;cursor:pointer;transition:background .12s; }
+  .lux-dropdown-item:hover { background:rgba(0,0,0,0.05); }
+  .lux-dropdown-item.selected { font-weight:700;background:rgba(0,119,182,0.07);color:#0077B6; }
+  .lux-dropdown-item .item-code { font-weight:700;font-size:13px; }
+  .lux-dropdown-item .item-name { color:#666;font-size:12px; }
+
+  /* ── Premium Card System ──────────────────────────────────────────── */
+  .pc-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+    position: relative;
+    background: #ffffff;
+  }
+  .pc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+  }
+  .pc-card .card-img {
+    transition: transform 0.4s ease;
+  }
+  .pc-card:hover .card-img {
+    transform: scale(1.05);
+  }
+  .pc-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 5px 10px; font-size: 11px; line-height: 1.4;
+    border-radius: 999px; color: #fff; font-weight: 700;
+    z-index: 10; white-space: nowrap; letter-spacing: 0.04em;
+  }
+  .pc-btn-secondary { transition: all 0.2s ease !important; }
+  .pc-btn-secondary:hover {
+    background: #00A8A8 !important;
+    color: #ffffff !important;
+    border-color: #00A8A8 !important;
+  }
+</style>
+</head>
+
+<body class="bg-sc-surface text-sc-on-surface min-h-screen" data-page="boats">
+
+<!-- ═══════════════════ NAVBAR (dark editorial) ═══════════════════ -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl" id="navbar">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html"       data-nav="tours"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tours">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.beach">BEACH CLUBS</a>
+    <a href="boats.html"       data-nav="boats"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.boats">BOATS</a>
+    <a href="why-us.html"      data-nav="why-us"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.why">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tips">TRAVEL TIPS</a>
+    <a href="contact.html"     data-nav="contact"      class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.contact">CONTACT</a>
+  </nav>
+
+  <div class="flex items-center gap-2">
+    <select id="currencySelect" style="display:none;"><option value="USD">USD</option><option value="COP">COP</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+    <div class="hidden sm:flex lux-chip-wrap" id="langWrap">
+      <button class="lux-chip" id="langBtn" onclick="toggleDrop('lang')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:1rem;line-height:1;">🌐</span>
+        <span id="langLabel">EN</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="langDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="en" onclick="pickLang('en')"><span class="item-code">EN</span><span class="item-name">English</span></div>
+        <div class="lux-dropdown-item" data-val="es" onclick="pickLang('es')"><span class="item-code">ES</span><span class="item-name">Español</span></div>
+        <div class="lux-dropdown-item" data-val="pt" onclick="pickLang('pt')"><span class="item-code">PT</span><span class="item-name">Português</span></div>
+      </div>
+    </div>
+    <div class="hidden sm:flex lux-chip-wrap" id="currWrap">
+      <button class="lux-chip" id="currBtn" onclick="toggleDrop('curr')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:0.85rem;line-height:1;font-weight:600;" id="currSymbol">$</span>
+        <span id="currLabel">USD</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="currDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="USD" onclick="pickCurr('USD')"><span class="item-code">USD</span><span class="item-name">US Dollar</span></div>
+        <div class="lux-dropdown-item" data-val="COP" onclick="pickCurr('COP')"><span class="item-code">COP</span><span class="item-name">Colombian Peso</span></div>
+        <div class="lux-dropdown-item" data-val="EUR" onclick="pickCurr('EUR')"><span class="item-code">EUR</span><span class="item-name">Euro</span></div>
+        <div class="lux-dropdown-item" data-val="GBP" onclick="pickCurr('GBP')"><span class="item-code">GBP</span><span class="item-name">British Pound</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+<div class="pt-32 pb-10 px-6 max-w-7xl mx-auto">
+  <p class="text-sc-primary text-xs font-bold tracking-widest uppercase mb-3" data-i18n="page.label">Private Boat Charters</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold text-sc-on-surface mb-3" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="page.title">Boats &amp; Charters</h1>
+  <p class="text-sc-on-surface-variant text-base max-w-xl" data-i18n="page.sub">Rent a private boat by the day — explore islands, beach-hop, and party on the water. All boats include captain, fuel, and life jackets.</p>
+</div>
+
+<!-- ═══════════════════ FILTER CHIPS ═══════════════════ -->
+<div class="flex justify-center mb-10 px-6">
+  <div class="inline-flex p-1.5 bg-sc-surface-container rounded-full gap-2 flex-wrap justify-center">
+    <button onclick="filterBoats('all')" id="chip-all" class="chip-active px-6 py-2.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2">
+      <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">directions_boat</span>
+      <span data-i18n="filter.all">All Boats</span>
+    </button>
+    <button onclick="filterBoats('speed-boat')" id="chip-speed-boat" class="px-6 py-2.5 rounded-full text-sc-on-surface-variant font-medium text-sm hover:bg-sc-surface-container-high transition-all flex items-center gap-2">
+      🚤 <span data-i18n="filter.speed">Speed Boats</span>
+    </button>
+    <button onclick="filterBoats('yacht')" id="chip-yacht" class="px-6 py-2.5 rounded-full text-sc-on-surface-variant font-medium text-sm hover:bg-sc-surface-container-high transition-all flex items-center gap-2">
+      🛥 <span data-i18n="filter.yacht">Yacht</span>
+    </button>
+    <button onclick="filterBoats('catamaran')" id="chip-catamaran" class="px-6 py-2.5 rounded-full text-sc-on-surface-variant font-medium text-sm hover:bg-sc-surface-container-high transition-all flex items-center gap-2">
+      ⛵ <span data-i18n="filter.cat">Catamaran</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════ BOAT GRID ═══════════════════ -->
+<main class="px-6 max-w-7xl mx-auto">
+  <div id="boatGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10"></div>
+  <p id="noResults" class="hidden text-center text-sc-on-surface-variant py-20 text-lg" data-i18n="no.results">No boats match this filter.</p>
+  <div id="boatViewMoreWrap" class="hidden justify-center mb-16">
+    <button id="boatViewMoreBtn" onclick="toggleBoatViewMore()" class="px-8 py-3 rounded-full border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-extrabold text-sm tracking-wide uppercase transition-all shadow-sm"></button>
+  </div>
+</main>
+
+<!-- ═══════════════════ BOOKING MODAL ═══════════════════ -->
+<div id="bookingModal" class="hidden fixed inset-0 z-[100] flex items-end md:items-center justify-center p-4" style="background:rgba(74,37,6,0.55);backdrop-filter:blur(8px);">
+  <div class="bg-sc-surface-lowest w-full max-w-md rounded-lg overflow-hidden shadow-2xl">
+    <!-- Image header -->
+    <div class="relative h-44 overflow-hidden">
+      <img id="modalImg" src="" alt="" class="w-full h-full object-cover"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-sc-on-surface/70 to-transparent"></div>
+      <h3 id="modalName" class="absolute bottom-4 left-5 text-white text-xl font-extrabold"></h3>
+      <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </div>
+    <!-- Form -->
+    <div class="p-6 space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-sc-on-surface-variant uppercase tracking-wider mb-1" data-i18n="modal.name">Your Name</label>
+        <input id="modalPersonName" type="text" placeholder="e.g. Maria Gonzalez" class="w-full bg-sc-surface-container-high rounded px-4 py-2.5 text-sc-on-surface placeholder-sc-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-sc-primary/40 text-sm"/>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-sc-on-surface-variant uppercase tracking-wider mb-1" data-i18n="modal.date">Date</label>
+          <input id="modalDate" type="date" class="w-full bg-sc-surface-container-high rounded px-4 py-2.5 text-sc-on-surface focus:outline-none focus:ring-2 focus:ring-sc-primary/40 text-sm"/>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-sc-on-surface-variant uppercase tracking-wider mb-1" data-i18n="modal.guests">Guests</label>
+          <input id="modalGuests" type="number" min="1" max="30" placeholder="e.g. 8" class="w-full bg-sc-surface-container-high rounded px-4 py-2.5 text-sc-on-surface placeholder-sc-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-sc-primary/40 text-sm"/>
+        </div>
+      </div>
+      <!-- Total price -->
+      <div class="bg-sc-surface-container-high rounded-2xl px-5 py-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold text-sc-on-surface-variant uppercase tracking-wider mb-0.5" data-i18n="modal.total.label">Total</p>
+          <p id="boatTotalSubtext" class="text-xs text-sc-on-surface-variant mt-0.5"></p>
+        </div>
+        <p id="boatTotalPrice" class="text-2xl font-extrabold text-sc-primary"></p>
+      </div>
+      <button onclick="sendWhatsApp()" class="w-full bg-[#FF7A00] hover:bg-[#d96a00] text-white font-extrabold py-3.5 rounded-full transition-colors flex items-center justify-center gap-2 shadow-md text-sm tracking-wide">
+        <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">chat</span>
+        <span data-i18n="modal.cta">CHECK AVAILABILITY ON WHATSAPP</span>
+      </button>
+      <p class="text-center text-xs text-sc-on-surface-variant" data-i18n="modal.note">We reply within minutes. No spam, no commitment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="bg-[#012A44] border-t border-white/10 mt-20 py-10 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <a href="index.html"><img src="images/logo.png" alt="Paradise Cartagena Tours" class="h-10 w-auto"></a>
+    <p class="text-white/60 text-sm">© 2025 Paradise Cartagena Tours. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="tours.html"       class="text-white/60 hover:text-[#FF7A00] text-xs font-semibold tracking-widest uppercase transition-colors">Tours</a>
+      <a href="beach-clubs.html" class="text-white/60 hover:text-[#FF7A00] text-xs font-semibold tracking-widest uppercase transition-colors">Beach Clubs</a>
+      <a href="boats.html"       class="text-white/60 hover:text-[#FF7A00] text-xs font-semibold tracking-widest uppercase transition-colors">Boats</a>
+      <a href="contact.html"     class="text-white/60 hover:text-[#FF7A00] text-xs font-semibold tracking-widest uppercase transition-colors">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ JS ═══════════════════ -->
+<script src="boats-data.js"></script>
+<script>
+/* ── CONFIG ─────────────────────────── */
+const WA_NUMBER = '573001234567';
+const boats = BOATS_DATA;
+function boatById(id) { return BOATS_DATA.find(b => b.id === id); }
+
+/* ── I18N ─────────────────────────── */
+let currentLang = 'en';
+const pageI18n = {
+  en: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOATS','nav.why':'WHY US','nav.tips':'TRAVEL TIPS','nav.contact':'CONTACT',
+    'page.label':'Private Boat Charters','page.title':'Boats & Charters',
+    'page.sub':'Rent a private boat by the day — explore islands, beach-hop, and party on the water. All boats include captain, fuel, and life jackets.',
+    'filter.all':'All Boats','filter.speed':'Speed Boats','filter.yacht':'Yacht','filter.cat':'Catamaran',
+    'modal.name':'Your Name','modal.date':'Date','modal.guests':'Guests',
+    'modal.total.label':'Total','modal.cta':'CHECK AVAILABILITY ON WHATSAPP',
+    'modal.note':'We reply within minutes. No spam, no commitment.',
+    'modal.group_rate':'Group rate · up to','guests':'guests',
+    'from':'From','check':'Check Availability','details':'View Details','view.more':'View More Boats','view.less':'Show Fewer Boats',
+    'group':'group','total_label':'total','upto':'up to','people':'people','per_person':'per person when split',
+    'no.results':'No boats match this filter.'
+  },
+  es: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BOTES','nav.why':'POR QUÉ NOSOTROS','nav.tips':'CONSEJOS DE VIAJE','nav.contact':'CONTACTO',
+    'page.label':'Alquiler Privado de Botes','page.title':'Botes y Chárteres',
+    'page.sub':'Alquila un bote privado por el día — explora islas, recorre playas y disfruta en el agua. Todos los botes incluyen capitán, combustible y chalecos salvavidas.',
+    'filter.all':'Todos los Botes','filter.speed':'Botes Rápidos','filter.yacht':'Yate','filter.cat':'Catamarán',
+    'modal.name':'Tu Nombre','modal.date':'Fecha','modal.guests':'Huéspedes',
+    'modal.total.label':'Total','modal.cta':'CONSULTAR DISPONIBILIDAD POR WHATSAPP',
+    'modal.note':'Respondemos en minutos. Sin spam ni compromiso.',
+    'modal.group_rate':'Tarifa grupal · hasta','guests':'huéspedes',
+    'from':'Desde','check':'Consultar Disponibilidad','details':'Ver Detalles','view.more':'Ver Más Botes','view.less':'Ver Menos Botes',
+    'group':'grupo','total_label':'total','upto':'hasta','people':'personas','per_person':'por persona si dividen',
+    'no.results':'No hay botes para este filtro.'
+  },
+  pt: {
+    'nav.tours':'TOURS','nav.beach':'BEACH CLUBS','nav.boats':'BARCOS','nav.why':'POR QUE NÓS','nav.tips':'DICAS DE VIAGEM','nav.contact':'CONTATO',
+    'page.label':'Fretamento Privado de Barcos','page.title':'Barcos e Fretamentos',
+    'page.sub':'Alugue um barco privado pelo dia — explore ilhas, visite praias e curta na água. Todos os barcos incluem capitão, combustível e coletes salva-vidas.',
+    'filter.all':'Todos os Barcos','filter.speed':'Lanchas','filter.yacht':'Iate','filter.cat':'Catamarã',
+    'modal.name':'Seu Nome','modal.date':'Data','modal.guests':'Hóspedes',
+    'modal.total.label':'Total','modal.cta':'VERIFICAR DISPONIBILIDADE NO WHATSAPP',
+    'modal.note':'Respondemos em minutos. Sem spam, sem compromisso.',
+    'modal.group_rate':'Tarifa em grupo · até','guests':'hóspedes',
+    'from':'A partir de','check':'Verificar Disponibilidade','details':'Ver Detalhes','view.more':'Ver Mais Barcos','view.less':'Ver Menos Barcos',
+    'group':'grupo','total_label':'total','upto':'até','people':'pessoas','per_person':'por pessoa se dividido',
+    'no.results':'Nenhum barco corresponde a este filtro.'
+  }
+};
+function t(k){ return (pageI18n[currentLang]||{})[k] || pageI18n.en[k] || k; }
+function applyTranslations(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); }); }
+function setLang(l) { currentLang = l; applyTranslations(); renderBoats(); }
+
+/* ── RENDER ─────────────────────────── */
+let activeFilter = 'all';
+let boatsExpanded = false;
+const BOAT_PREVIEW_LIMIT = 6;
+
+function renderBoats() {
+  const grid = document.getElementById('boatGrid');
+  const noResults = document.getElementById('noResults');
+  const viewMoreWrap = document.getElementById('boatViewMoreWrap');
+  const viewMoreBtn = document.getElementById('boatViewMoreBtn');
+  const filtered = activeFilter === 'all' ? boats : boats.filter(b => b.category === activeFilter);
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    noResults.classList.remove('hidden');
+    viewMoreWrap.classList.add('hidden');
+    return;
+  }
+  const visibleBoats = boatsExpanded ? filtered : filtered.slice(0, BOAT_PREVIEW_LIMIT);
+  noResults.classList.add('hidden');
+  grid.innerHTML = visibleBoats.map(b => cardHTML(b)).join('');
+
+  viewMoreWrap.className = filtered.length > BOAT_PREVIEW_LIMIT ? 'flex justify-center mb-16' : 'hidden justify-center mb-16';
+  viewMoreBtn.textContent = boatsExpanded ? t('view.less') : t('view.more');
+  viewMoreBtn.setAttribute('aria-expanded', String(boatsExpanded));
+}
+
+function cardHTML(b) {
+  const topBadgeHTML = b.topBadge
+    ? `<span class="pc-badge" style="background:${b.topBadge.bg};color:${b.topBadge.color};">${b.topBadge.text}</span>`
+    : '';
+  const bottomBadgeHTML = b.bottomBadge
+    ? `<span style="position:absolute;bottom:12px;right:12px;padding:5px 10px;font-size:11px;border-radius:999px;background:rgba(0,40,70,0.75);backdrop-filter:blur(6px);color:#fff;font-weight:700;z-index:10;letter-spacing:0.04em;">${b.bottomBadge.text}</span>`
+    : '';
+
+  const featuresHTML = b.specs.map(f => `
+    <div class="flex items-center gap-3 text-sm text-sc-on-surface-variant">
+      <span class="material-symbols-outlined text-sc-secondary text-lg">${f.icon}</span>
+      <span>${f.label}</span>
+    </div>`).join('');
+
+  return `
+  <div class="boat-card group pc-card flex flex-col">
+    <div class="relative h-64 overflow-hidden">
+      <img class="card-img w-full h-full object-cover" src="${b.img}" alt="${b.name}"/>
+      ${topBadgeHTML}
+      ${bottomBadgeHTML}
+    </div>
+    <div class="p-6 flex flex-col flex-grow">
+      <h3 class="text-xl font-bold text-sc-on-surface mb-1">🚤 ${b.name} <span class="text-sc-on-surface-variant font-normal">(${b.subtitle})</span></h3>
+      <p class="text-sc-on-surface-variant text-sm mb-6">${b.tagline}</p>
+      <div class="space-y-3 mb-8">
+        ${featuresHTML}
+      </div>
+      <div class="mt-auto pt-6 border-t border-sc-surface-container border-dashed">
+        <div class="flex flex-col mb-6">
+          <span class="text-sm text-sc-on-surface-variant font-medium">${t('from')} <span class="price-group">${fmt(b.priceCOP)}</span> / ${t('group')}</span>
+          <span class="text-2xl font-extrabold text-sc-primary"><span class="price-group">${fmt(b.priceCOP)}</span> ${t('total_label')} <span class="text-sm font-normal text-sc-on-surface-variant">(${t('upto')} ${b.maxGuests} ${t('people')})</span></span>
+          <span class="text-xs text-sc-on-surface-variant mt-1">≈ <span class="price-pp">${fmt(b.perPersonCOP)}</span> ${t('per_person')}</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="openBoatModal(${b.id})" class="bg-[#FF7A00] hover:bg-[#FF4E50] text-white py-3 rounded-full font-bold text-sm transition-all shadow-md">${t('check')}</button>
+          <a href="boat-detail.html?id=${b.id}" class="pc-btn-secondary border-2 border-[#00A8A8] py-3 rounded-full font-bold text-sm text-[#00A8A8] text-center">${t('details')}</a>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── FILTER ─────────────────────────── */
+function filterBoats(cat) {
+  activeFilter = cat;
+  boatsExpanded = false;
+  // Update chip styles
+  ['all','speed-boat','yacht','catamaran'].forEach(c => {
+    const el = document.getElementById('chip-' + c);
+    if (!el) return;
+    if (c === cat) {
+      el.classList.add('chip-active');
+      el.classList.remove('text-sc-on-surface-variant');
+    } else {
+      el.classList.remove('chip-active');
+      el.classList.add('text-sc-on-surface-variant');
+    }
+  });
+  renderBoats();
+}
+
+function toggleBoatViewMore() {
+  boatsExpanded = !boatsExpanded;
+  renderBoats();
+  if (!boatsExpanded) {
+    document.getElementById('boatGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ── MODAL ──────────────────────────── */
+let activeBoat = null;
+function openModal(b) {
+  activeBoat = b;
+  document.getElementById('modalImg').src   = b.img;
+  document.getElementById('modalImg').alt   = b.name;
+  document.getElementById('modalName').textContent = b.name + ' · ' + b.subtitle;
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  document.getElementById('boatTotalPrice').textContent = fmt(b.priceCOP) + currCode;
+  document.getElementById('boatTotalSubtext').textContent = t('modal.group_rate') + ' ' + b.maxGuests + ' ' + t('guests');
+  document.getElementById('bookingModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function openBoatModal(id) { openModal(boatById(id)); }
+function closeModal() {
+  document.getElementById('bookingModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('bookingModal').addEventListener('click', function(e){
+  if (e.target === this) closeModal();
+});
+
+/* ── WHATSAPP ───────────────────────── */
+function sendWhatsApp() {
+  const name   = document.getElementById('modalPersonName').value.trim() || 'Guest';
+  const date   = document.getElementById('modalDate').value        || 'TBD';
+  const guests = document.getElementById('modalGuests').value      || 'TBD';
+  const boat   = activeBoat ? activeBoat.name + ' (' + activeBoat.subtitle + ')' : 'a boat';
+  const currCode = currentCurrency === 'COP' ? '' : ' ' + currentCurrency;
+  const totalStr = activeBoat ? fmt(activeBoat.priceCOP) + currCode : '';
+  const msg = `Hi! I'd like to book ${boat}.\n\nDate: ${date}\nGuests: ${guests}${totalStr ? '\n💰 Total: ' + totalStr : ''}\nName: ${name}\n\nPlease confirm availability and pricing. Thanks!`;
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+/* ── CURRENCY SWITCHER ──────────────── */
+document.getElementById('currencySelect').addEventListener('change', function() {
+  currentCurrency = this.value;
+  renderBoats();
+});
+
+/* ── INIT ───────────────────────────── */
+renderBoats();
+loadCurrencyRates(renderBoats);
+
+/* ── ACTIVE NAV ─────────────────────── */
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    if (a.dataset.nav === page) a.classList.add('nav-active');
+  });
+})();
+</script>
+<script>
+const CURR_SYMBOLS={USD:'$',COP:'$',EUR:'€',GBP:'£'};
+function toggleDrop(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn'),o=d.classList.contains('open');closeAllDrops();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true');}}
+function closeAllDrops(){['lang','curr'].forEach(function(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn');if(d)d.classList.remove('open');if(b)b.setAttribute('aria-expanded','false');});}
+function pickLang(v){document.getElementById('langLabel').textContent=v.toUpperCase();document.querySelectorAll('#langDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();setLang(v);}
+function pickCurr(v){document.getElementById('currLabel').textContent=v;document.getElementById('currSymbol').textContent=CURR_SYMBOLS[v]||'$';document.querySelectorAll('#currDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();var s=document.getElementById('currencySelect');if(s){s.value=v;s.dispatchEvent(new Event('change'));}}
+document.addEventListener('click',function(e){if(!e.target.closest('.lux-chip-wrap'))closeAllDrops();});
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>

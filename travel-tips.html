@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Travel Tips – Paradise Cartagena Tours</title>
+<meta name="description" content="Local insider tips for visiting Cartagena, Colombia. Avoid common tourist mistakes and travel smarter with advice from our on-the-ground team."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  body { font-family:'Manrope',sans-serif; }
+  h1,h2,h3 { font-family:'Epilogue',sans-serif; }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+
+  .wa-pulse { animation:waPulse 2.5s infinite; }
+  @keyframes waPulse {
+    0%,100% { box-shadow:0 8px 32px rgba(37,211,102,0.4); }
+    50%      { box-shadow:0 8px 48px rgba(37,211,102,0.7); }
+  }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .55s ease,transform .55s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* Don't cards */
+  .dont-card {
+    border-radius:20px; overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,0.07);
+    transition:all 0.25s ease; position:relative; background:#ffffff;
+    border-left:4px solid #e5e7eb;
+  }
+  .dont-card:hover { transform:translateY(-5px); box-shadow:0 14px 35px rgba(0,0,0,0.12); border-left-color:#FF4E50; }
+  .card-img { transition:transform 0.5s ease; }
+  .dont-card:hover .card-img { transform:scale(1.05); }
+
+  /* Do cards */
+  .do-card {
+    border-radius:20px; background:#ffffff;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    transition:all 0.25s ease;
+    border-top:4px solid #00A8A8;
+    padding:1.75rem;
+  }
+  .do-card:hover { transform:translateY(-4px); box-shadow:0 14px 35px rgba(0,0,0,0.10); }
+
+  /* Lux dropdowns */
+  .lux-chip { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 10px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;font-size:0.72rem;font-weight:500;color:#fff;white-space:nowrap;user-select:none; }
+  .lux-chip:hover { background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);transform:translateY(-1px); }
+  .lux-chip:active { transform:scale(0.97); }
+  .lux-chip-wrap { position:relative; }
+  .lux-dropdown { position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:6px;min-width:140px;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease; }
+  .lux-dropdown.open { opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0); }
+  .lux-dropdown-item { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;color:#1a1a1a;cursor:pointer;transition:background .12s; }
+  .lux-dropdown-item:hover { background:rgba(0,0,0,0.05); }
+  .lux-dropdown-item.selected { font-weight:700;background:rgba(0,119,182,0.07);color:#0077B6; }
+</style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen" data-page="travel-tips">
+
+<!-- ═══ NAVBAR ════════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0">
+    <img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;">
+  </a>
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html"       data-nav="tours"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BEACH CLUBS</a>
+    <a href="boats.html"       data-nav="boats"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BOATS</a>
+    <a href="why-us.html"      data-nav="why-us"       class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TRAVEL TIPS</a>
+    <a href="contact.html"     data-nav="contact"      class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">CONTACT</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <div class="hidden sm:flex lux-chip-wrap" id="langWrap">
+      <button class="lux-chip" id="langBtn" onclick="toggleDrop('lang')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:1rem;line-height:1;">🌐</span>
+        <span id="langLabel">EN</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="langDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="en" onclick="pickLang('en')"><span style="font-weight:700;font-size:13px;">EN</span><span style="color:#666;font-size:12px;margin-left:4px;">English</span></div>
+        <div class="lux-dropdown-item" data-val="es" onclick="pickLang('es')"><span style="font-weight:700;font-size:13px;">ES</span><span style="color:#666;font-size:12px;margin-left:4px;">Español</span></div>
+        <div class="lux-dropdown-item" data-val="pt" onclick="pickLang('pt')"><span style="font-weight:700;font-size:13px;">PT</span><span style="color:#666;font-size:12px;margin-left:4px;">Português</span></div>
+      </div>
+    </div>
+    <div class="hidden sm:flex lux-chip-wrap" id="currWrap">
+      <button class="lux-chip" id="currBtn" onclick="toggleDrop('curr')" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span style="font-size:0.85rem;line-height:1;font-weight:600;" id="currSymbol">$</span>
+        <span id="currLabel">USD</span>
+        <span style="font-size:0.6rem;opacity:0.7;margin-left:2px;">▾</span>
+      </button>
+      <div class="lux-dropdown" id="currDrop" role="listbox">
+        <div class="lux-dropdown-item selected" data-val="USD" onclick="pickCurr('USD')"><span style="font-weight:700;font-size:13px;">USD</span><span style="color:#666;font-size:12px;margin-left:4px;">US Dollar</span></div>
+        <div class="lux-dropdown-item" data-val="COP" onclick="pickCurr('COP')"><span style="font-weight:700;font-size:13px;">COP</span><span style="color:#666;font-size:12px;margin-left:4px;">Colombian Peso</span></div>
+        <div class="lux-dropdown-item" data-val="EUR" onclick="pickCurr('EUR')"><span style="font-weight:700;font-size:13px;">EUR</span><span style="color:#666;font-size:12px;margin-left:4px;">Euro</span></div>
+        <div class="lux-dropdown-item" data-val="GBP" onclick="pickCurr('GBP')"><span style="font-weight:700;font-size:13px;">GBP</span><span style="color:#666;font-size:12px;margin-left:4px;">British Pound</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════════════════ -->
+<section class="min-h-[60vh] flex flex-col justify-center px-6 md:px-12 pt-28 pb-20 relative overflow-hidden" style="background:linear-gradient(135deg,#012A44 0%,#0a3d5c 60%,#0077B6 100%);">
+  <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(circle at 15% 70%, rgba(255,122,0,0.10) 0%, transparent 50%), radial-gradient(circle at 85% 20%, rgba(0,168,168,0.08) 0%, transparent 40%);"></div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <p class="text-[#00A8A8] text-xs font-bold tracking-[0.25em] uppercase mb-6 reveal">Local Knowledge</p>
+    <h1 class="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-6 reveal">
+      Travel smarter<br/>
+      <span style="color:#FF7A00;">in Cartagena.</span>
+    </h1>
+    <p class="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed reveal" data-i18n="intro.text">
+      Before you explore Cartagena, avoid common tourist mistakes and travel with confidence using these local tips.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ DON'TS SECTION ════════════════════════════════════════════════════════ -->
+<section class="py-24 md:py-32 px-6 md:px-10" style="background:linear-gradient(180deg,#f8f9fa 0%,#eef4f8 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[#FF4E50] text-xs font-bold tracking-[0.25em] uppercase mb-3">Watch Out</p>
+      <h2 class="text-4xl md:text-5xl font-black text-[#012A44] tracking-tight leading-tight" data-i18n="s1.heading">Avoid These Common Mistakes</h2>
+      <p class="text-gray-500 mt-4 max-w-xl mx-auto text-sm" data-i18n="s1.sub">Simple mistakes can cost you money or ruin your experience — here's what to watch for</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="images/tip-jewelry.jpg" alt="Avoid flashy jewelry"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">warning</span>
+            <span data-i18n="c1.badge">Safety</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c1.title">Avoid Flashy Jewelry</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c1.desc">Keep high-value items in your hotel safe. Avoid wearing expensive watches or visible gold chains while walking.</p>
+        </div>
+      </div>
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="images/tip-gifts.jpg" alt="Don't accept free gifts"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">block</span>
+            <span data-i18n="c2.badge">Scams</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c2.title">Don't Accept Free Gifts</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c2.desc">Politely decline "free" samples of massage or oysters on the beach; they always come with a high price tag after.</p>
+        </div>
+      </div>
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="images/tip-water.jpg" alt="Avoid tap water"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">opacity</span>
+            <span data-i18n="c3.badge">Health</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c3.title">Avoid Drinking Tap Water</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c3.desc">Always opt for bottled or filtered water. The local tap water can cause stomach upset for visitors.</p>
+        </div>
+      </div>
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqWQ-xnIfhlpyODkdy9mJrXQ3v6UfMQT37CyS2S5DKKXUppRS7BnzBEo8_af1i2Kfz-_AsgVjBcZaAqC5vbvz6WA_X6Ub702qJZoQEMm8BqroLE42hvZx8bJSAy_VO4sn_XAuScCrFykTTp7vIEFOhuNcIyENQW-effsTiIQc_a9lIOkrG2tENT9u-qIWO9MAK7YJplMQucC9RcIwLkmZ3UuToXDRQZlOrccRn-Oqz93dTumfWTy5RB7s52lK16rijp6R7Tc9jvVs" alt="Don't leave drinks unattended"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">visibility_off</span>
+            <span data-i18n="c4.badge">Awareness</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c4.title">Don't Leave Drinks Unattended</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c4.desc">Never leave your drink unattended in bars or clubs. Keep your glass in sight at all times.</p>
+        </div>
+      </div>
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="images/tip-price.png" alt="Ask price first"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">payments</span>
+            <span data-i18n="c5.badge">Finance</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c5.title">Always Ask the Price First</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c5.desc">Avoid "market surprises." Agree on a total price before accepting any food, drink, or taxi ride.</p>
+        </div>
+      </div>
+
+      <div class="dont-card reveal group">
+        <div class="h-52 overflow-hidden">
+          <img class="card-img w-full h-full object-cover" src="images/tip-overpay.jpg" alt="Avoid overpaying"/>
+        </div>
+        <div class="p-6">
+          <div class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background:rgba(255,78,80,0.08);color:#FF4E50;">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">trending_down</span>
+            <span data-i18n="c6.badge">Budget</span>
+          </div>
+          <h3 class="text-lg font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="c6.title">Avoid Overpaying</h3>
+          <p class="text-sm text-gray-500 leading-relaxed" data-i18n="c6.desc">Research standard rates. Taxis in the city shouldn't exceed 15,000 COP for most short distances.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCAL INSIGHT STRIP ═══════════════════════════════════════════════════ -->
+<section class="py-20 px-6 md:px-10" style="background:linear-gradient(135deg,#012A44 0%,#0077B6 100%);">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <p class="text-[#FF7A00] text-xs font-bold tracking-[0.25em] uppercase mb-6" data-i18n="insight.title">Local Insight</p>
+    <p class="text-5xl font-black text-white/20 leading-none select-none">"</p>
+    <p class="text-xl md:text-2xl text-white/90 leading-relaxed italic -mt-4" data-i18n="insight.text">Prices can vary significantly in Cartagena — always confirm the price before accepting any service.</p>
+    <div class="mt-8 flex items-center justify-center gap-3">
+      <div class="w-10 h-px bg-white/20"></div>
+      <span class="text-white/40 text-[10px] font-bold tracking-widest uppercase">Paradise Cartagena</span>
+      <div class="w-10 h-px bg-white/20"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DO'S SECTION ══════════════════════════════════════════════════════════ -->
+<section class="py-24 md:py-32 px-6 md:px-10 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[#00A8A8] text-xs font-bold tracking-[0.25em] uppercase mb-3">Pro Tips</p>
+      <h2 class="text-4xl md:text-5xl font-black text-[#012A44] tracking-tight leading-tight" data-i18n="s2.heading">Travel Like a Local</h2>
+      <p class="text-gray-500 mt-4 max-w-xl mx-auto text-sm" data-i18n="s2.sub">These simple tips will make your trip smoother, safer, and more enjoyable</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">directions_car</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d1.title">Private Transport</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d1.desc">Use Uber or pre-booked private cars for predictable pricing and safety.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">currency_exchange</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d2.title">Exchange Safely</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d2.desc">Use official exchange houses or ATMs inside banks rather than street changers.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">water_drop</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d3.title">Stay Hydrated</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d3.desc">The Caribbean humidity is intense. Carry a reusable bottle with filtered water.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">lock</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d4.title">Keep Belongings Secure</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d4.desc">Use a cross-body bag and keep it in front of you in crowded markets.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">translate</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d5.title">Learn Basic Spanish</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d5.desc">Knowing "¿Cuánto cuesta?" and numbers goes a long way with vendors.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">handshake</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d6.title">Negotiate Respectfully</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d6.desc">Respectful negotiation is expected in markets, but don't lowball artisans.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">restaurant</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d7.title">Try Authentic Local Food</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d7.desc">Arepa de Huevo and coconut rice are must-try Caribbean staples.</p>
+      </div>
+
+      <div class="do-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#00A8A8,#0077B6);">
+          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">shield</span>
+        </div>
+        <h4 class="text-base font-black text-[#012A44] mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;" data-i18n="d8.title">Stay in Safe Areas</h4>
+        <p class="text-sm text-gray-500 leading-relaxed" data-i18n="d8.desc">Stick to well-known areas like Centro, Getsemaní, and Bocagrande, especially at night.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ════════════════════════════════════════════════════════════════════ -->
+<section class="py-20 md:py-28 px-6 md:px-10" style="background:linear-gradient(180deg,#eef4f8 0%,#f8f9fa 100%);">
+  <div class="max-w-5xl mx-auto reveal">
+    <div class="rounded-[2rem] p-12 md:p-20 text-center text-white relative overflow-hidden" style="background:linear-gradient(135deg,#012A44 0%,#0077B6 100%);box-shadow:0 12px 48px rgba(0,119,182,0.35);">
+      <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(circle at 20% 50%, rgba(255,122,0,0.10) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0,168,168,0.10) 0%, transparent 40%);"></div>
+      <div class="relative z-10">
+        <p class="text-[#00A8A8] text-xs font-bold tracking-[0.25em] uppercase mb-4">Ready to Explore?</p>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-i18n="cta.heading">Ready to experience Cartagena the right way?</h2>
+        <p class="text-white/70 text-lg max-w-xl mx-auto mb-10" data-i18n="cta.sub">Let us plan your trip with trusted experiences and local expertise.</p>
+        <a id="ctaWA" href="#" class="inline-flex items-center gap-3 bg-[#FF7A00] text-white px-10 py-4 rounded-full font-black text-sm tracking-wide hover:bg-[#FF4E50] hover:scale-105 active:scale-95 transition-all shadow-xl">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">chat</span>
+          <span data-i18n="cta.btn">Plan My Trip on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ── I18N ─────────────────────────── */
+let currentLang = 'en';
+const pageI18n = {
+  en: {
+    'intro.text':'Before you explore Cartagena, avoid common tourist mistakes and travel with confidence using these local tips.',
+    's1.heading':'Avoid These Common Mistakes',
+    's1.sub':"Simple mistakes can cost you money or ruin your experience — here's what to watch for",
+    'c1.badge':'Safety','c1.title':'Avoid Flashy Jewelry','c1.desc':'Keep high-value items in your hotel safe. Avoid wearing expensive watches or visible gold chains while walking.',
+    'c2.badge':'Scams','c2.title':"Don't Accept Free Gifts",'c2.desc':'Politely decline "free" samples of massage or oysters on the beach; they always come with a high price tag after.',
+    'c3.badge':'Health','c3.title':'Avoid Drinking Tap Water','c3.desc':'Always opt for bottled or filtered water. The local tap water can cause stomach upset for visitors.',
+    'c4.badge':'Awareness','c4.title':"Don't Leave Drinks Unattended",'c4.desc':'Never leave your drink unattended in bars or clubs. Keep your glass in sight at all times.',
+    'c5.badge':'Finance','c5.title':'Always Ask the Price First','c5.desc':'Avoid market surprises. Agree on a total price before accepting any food, drink, or taxi ride.',
+    'c6.badge':'Budget','c6.title':'Avoid Overpaying','c6.desc':"Research standard rates. Taxis in the city shouldn't exceed 15,000 COP for most short distances.",
+    'insight.title':'Local Insight',
+    'insight.text':'Prices can vary significantly in Cartagena — always confirm the price before accepting any service.',
+    's2.heading':'Travel Like a Local',
+    's2.sub':'These simple tips will make your trip smoother, safer, and more enjoyable',
+    'd1.title':'Private Transport','d1.desc':'Use Uber or pre-booked private cars for predictable pricing and safety.',
+    'd2.title':'Exchange Safely','d2.desc':'Use official exchange houses or ATMs inside banks rather than street changers.',
+    'd3.title':'Stay Hydrated','d3.desc':'The Caribbean humidity is intense. Carry a reusable bottle with filtered water.',
+    'd4.title':'Keep Belongings Secure','d4.desc':'Use a cross-body bag and keep it in front of you in crowded markets.',
+    'd5.title':'Learn Basic Spanish','d5.desc':'Knowing "¿Cuánto cuesta?" and numbers goes a long way with vendors.',
+    'd6.title':'Negotiate Respectfully','d6.desc':"Respectful negotiation is expected in markets, but don't lowball artisans.",
+    'd7.title':'Try Authentic Local Food','d7.desc':'Arepa de Huevo and coconut rice are must-try Caribbean staples.',
+    'd8.title':'Stay in Safe Areas','d8.desc':'Stick to well-known areas like Centro, Getsemaní, and Bocagrande, especially at night.',
+    'cta.heading':'Ready to experience Cartagena the right way?',
+    'cta.sub':'Let us plan your trip with trusted experiences and local expertise.',
+    'cta.btn':'Plan My Trip on WhatsApp'
+  },
+  es: {
+    'intro.text':'Antes de explorar Cartagena, evita los errores turísticos más comunes y viaja con confianza con estos consejos locales.',
+    's1.heading':'Evita Estos Errores Comunes',
+    's1.sub':'Errores simples pueden costarte dinero o arruinar tu experiencia — esto es lo que debes evitar',
+    'c1.badge':'Seguridad','c1.title':'Evita las Joyas Llamativas','c1.desc':'Guarda los artículos de valor en la caja fuerte del hotel. Evita usar relojes caros o cadenas de oro visibles al caminar.',
+    'c2.badge':'Estafas','c2.title':'No Aceptes Regalos Gratis','c2.desc':'Rechaza amablemente las muestras de masajes u ostras en la playa; siempre tienen un precio alto después.',
+    'c3.badge':'Salud','c3.title':'Evita Beber Agua del Grifo','c3.desc':'Siempre opta por agua embotellada o filtrada. El agua del grifo puede causar malestar estomacal a los visitantes.',
+    'c4.badge':'Precaución','c4.title':'No Dejes Bebidas Sin Vigilar','c4.desc':'Nunca dejes tu bebida sin vigilar en bares o discotecas. Mantén tu vaso a la vista en todo momento.',
+    'c5.badge':'Finanzas','c5.title':'Siempre Pregunta el Precio Antes','c5.desc':'Evita sorpresas. Acuerda un precio total antes de aceptar cualquier comida, bebida o taxi.',
+    'c6.badge':'Presupuesto','c6.title':'Evita Pagar de Más','c6.desc':'Investiga las tarifas estándar. Los taxis en la ciudad no deberían superar los 15.000 COP para distancias cortas.',
+    'insight.title':'Consejo Local',
+    'insight.text':'Los precios pueden variar significativamente en Cartagena — confirma siempre el precio antes de aceptar cualquier servicio.',
+    's2.heading':'Viaja Como un Local',
+    's2.sub':'Estos simples consejos harán tu viaje más fluido, seguro y agradable',
+    'd1.title':'Transporte Privado','d1.desc':'Usa Uber o autos privados reservados con anticipación para precios predecibles y seguridad.',
+    'd2.title':'Cambia Dinero con Seguridad','d2.desc':'Usa casas de cambio oficiales o cajeros dentro de bancos en lugar de cambiadores callejeros.',
+    'd3.title':'Mantente Hidratado','d3.desc':'La humedad del Caribe es intensa. Lleva una botella reutilizable con agua filtrada.',
+    'd4.title':'Protege tus Pertenencias','d4.desc':'Usa una bolsa cruzada y mantenla frente a ti en mercados concurridos.',
+    'd5.title':'Aprende Español Básico','d5.desc':'Saber "¿Cuánto cuesta?" y los números ayuda mucho con los vendedores.',
+    'd6.title':'Negocia con Respeto','d6.desc':'La negociación respetuosa es esperada en los mercados, pero no subestimes a los artesanos.',
+    'd7.title':'Prueba Comida Local Auténtica','d7.desc':'La Arepa de Huevo y el arroz con coco son delicias caribeñas imprescindibles.',
+    'd8.title':'Quédate en Zonas Seguras','d8.desc':'Ve a zonas conocidas como el Centro, Getsemaní y Bocagrande, especialmente de noche.',
+    'cta.heading':'¿Listo para vivir Cartagena de la manera correcta?',
+    'cta.sub':'Déjanos planificar tu viaje con experiencias de confianza y conocimiento local.',
+    'cta.btn':'Planificar Mi Viaje por WhatsApp'
+  },
+  pt: {
+    'intro.text':'Antes de explorar Cartagena, evite os erros turísticos mais comuns e viaje com confiança usando essas dicas locais.',
+    's1.heading':'Evite Esses Erros Comuns',
+    's1.sub':'Erros simples podem custar dinheiro ou arruinar sua experiência — veja o que você deve evitar',
+    'c1.badge':'Segurança','c1.title':'Evite Joias Chamativas','c1.desc':'Guarde itens de valor no cofre do hotel. Evite usar relógios caros ou correntes de ouro visíveis ao caminhar.',
+    'c2.badge':'Golpes','c2.title':'Não Aceite Presentes Grátis','c2.desc':'Recuse educadamente amostras de massagem ou ostras na praia; sempre vêm com um preço alto depois.',
+    'c3.badge':'Saúde','c3.title':'Evite Beber Água da Torneira','c3.desc':'Prefira sempre água engarrafada ou filtrada. A água da torneira local pode causar problemas estomacais em visitantes.',
+    'c4.badge':'Atenção','c4.title':'Não Deixe Bebidas Sem Vigilância','c4.desc':'Nunca deixe sua bebida sem vigilância em bares ou baladas. Mantenha seu copo à vista o tempo todo.',
+    'c5.badge':'Finanças','c5.title':'Sempre Pergunte o Preço Antes','c5.desc':'Evite surpresas. Acorde um preço total antes de aceitar qualquer comida, bebida ou táxi.',
+    'c6.badge':'Orçamento','c6.title':'Evite Pagar a Mais','c6.desc':'Pesquise as tarifas padrão. Os táxis na cidade não devem exceder 15.000 COP para distâncias curtas.',
+    'insight.title':'Dica Local',
+    'insight.text':'Os preços podem variar significativamente em Cartagena — confirme sempre o preço antes de aceitar qualquer serviço.',
+    's2.heading':'Viaje Como um Local',
+    's2.sub':'Essas dicas simples tornarão sua viagem mais tranquila, segura e agradável',
+    'd1.title':'Transporte Privado','d1.desc':'Use Uber ou carros privados pré-reservados para preços previsíveis e segurança.',
+    'd2.title':'Troque Dinheiro com Segurança','d2.desc':'Use casas de câmbio oficiais ou caixas eletrônicos dentro de bancos em vez de cambistas de rua.',
+    'd3.title':'Fique Hidratado','d3.desc':'A umidade do Caribe é intensa. Leve uma garrafa reutilizável com água filtrada.',
+    'd4.title':'Proteja seus Pertences','d4.desc':'Use uma bolsa transversal e mantenha-a na frente em mercados movimentados.',
+    'd5.title':'Aprenda Espanhol Básico','d5.desc':'Saber "¿Cuánto cuesta?" e números ajuda muito com os vendedores.',
+    'd6.title':'Negocie com Respeito','d6.desc':'A negociação respeitosa é esperada nos mercados, mas não subestime os artesãos.',
+    'd7.title':'Experimente a Comida Local Autêntica','d7.desc':'Arepa de Huevo e arroz de coco são especialidades caribenhas que você não pode perder.',
+    'd8.title':'Fique em Áreas Seguras','d8.desc':'Prefira áreas conhecidas como Centro, Getsemaní e Bocagrande, especialmente à noite.',
+    'cta.heading':'Pronto para vivenciar Cartagena do jeito certo?',
+    'cta.sub':'Deixe-nos planejar sua viagem com experiências confiáveis e expertise local.',
+    'cta.btn':'Planejar Minha Viagem no WhatsApp'
+  }
+};
+function t(k){ return (pageI18n[currentLang]||{})[k] || pageI18n.en[k] || k; }
+function applyTranslations(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); }); }
+function setLang(l) { currentLang = l; applyTranslations(); }
+
+const WA_NUMBER = '573001234567';
+function openWA(){ window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent("Hi! I'd like to book a Cartagena experience. Can you help?"),'_blank'); }
+document.getElementById('ctaWA').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent("Hi! I'd like to plan my Cartagena trip. Can you help?");
+
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page) a.classList.add('nav-active');
+  });
+})();
+
+const ro = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+const CURR_SYMBOLS={USD:'$',COP:'$',EUR:'€',GBP:'£'};
+function toggleDrop(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn'),o=d.classList.contains('open');closeAllDrops();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true');}}
+function closeAllDrops(){['lang','curr'].forEach(function(w){var d=document.getElementById(w+'Drop'),b=document.getElementById(w+'Btn');if(d)d.classList.remove('open');if(b)b.setAttribute('aria-expanded','false');});}
+function pickLang(v){document.getElementById('langLabel').textContent=v.toUpperCase();document.querySelectorAll('#langDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();setLang(v);}
+function pickCurr(v){document.getElementById('currLabel').textContent=v;document.getElementById('currSymbol').textContent=CURR_SYMBOLS[v]||'$';document.querySelectorAll('#currDrop .lux-dropdown-item').forEach(function(e){e.classList.toggle('selected',e.dataset.val===v);});closeAllDrops();}
+document.addEventListener('click',function(e){if(!e.target.closest('.lux-chip-wrap'))closeAllDrops();});
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>
