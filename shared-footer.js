@@ -1,5 +1,6 @@
 (function () {
   const WA_NUMBER = '573001234567';
+  const SUPPORT_EMAIL = 'info@paradisecartagenatours.com';
   const year = new Date().getFullYear();
 
   function footerHTML() {
@@ -46,20 +47,21 @@
             <div>
               <h4 class="font-bold text-white mb-5 text-sm uppercase tracking-wider">Company</h4>
               <ul class="space-y-3 text-sm font-medium">
+                <li><a href="about-us.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">About Us</a></li>
                 <li><a href="why-us.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Why Us</a></li>
                 <li><a href="travel-tips.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Travel Tips</a></li>
                 <li><a href="index.html#how" class="text-white/60 hover:text-[#FF7A00] transition-colors">How It Works</a></li>
-                <li><a href="index.html#reviews" class="text-white/60 hover:text-[#FF7A00] transition-colors">Reviews</a></li>
+                <li><a href="contact.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Contact Us</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 class="font-bold text-white mb-5 text-sm uppercase tracking-wider">Contact</h4>
+              <h4 class="font-bold text-white mb-5 text-sm uppercase tracking-wider">Support & Policies</h4>
               <ul class="space-y-4 text-sm font-medium">
                 <li>
-                  <a href="mailto:info@paradisetours.com" class="flex items-center gap-3 text-white/60 hover:text-[#FF7A00] transition-colors">
+                  <a href="mailto:${SUPPORT_EMAIL}" class="flex items-center gap-3 text-white/60 hover:text-[#FF7A00] transition-colors">
                     <span class="material-symbols-outlined text-[#FF7A00] text-lg">mail</span>
-                    info@paradisetours.com
+                    ${SUPPORT_EMAIL}
                   </a>
                 </li>
                 <li>
@@ -70,6 +72,9 @@
                     WhatsApp booking
                   </a>
                 </li>
+                <li><a href="terms.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Terms & Conditions</a></li>
+                <li><a href="cancellation-refund-policy.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Cancellation & Refund Policy</a></li>
+                <li><a href="privacy-policy.html" class="text-white/60 hover:text-[#FF7A00] transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
           </div>

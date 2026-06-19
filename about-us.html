@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - Paradise Cartagena Tours</title>
+<meta name="description" content="Learn about Paradise Cartagena Tours, a Cartagena-based tour and travel booking agency helping travelers book tours, boats, beach clubs, and custom group experiences."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  body { font-family:'Manrope',sans-serif; }
+  h1,h2,h3 { font-family:'Epilogue',sans-serif; }
+  .nav-active { color:#FF7A00 !important; font-weight:700 !important; border-bottom:2px solid #FF7A00; }
+</style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen" data-page="about-us">
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+  <nav class="hidden md:flex items-center gap-7">
+    <a href="tours.html" data-nav="tours" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TOURS</a>
+    <a href="beach-clubs.html" data-nav="beach-clubs" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BEACH CLUBS</a>
+    <a href="boats.html" data-nav="boats" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">BOATS</a>
+    <a href="why-us.html" data-nav="why-us" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">WHY US</a>
+    <a href="travel-tips.html" data-nav="travel-tips" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">TRAVEL TIPS</a>
+    <a href="contact.html" data-nav="contact" class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5">CONTACT</a>
+  </nav>
+</header>
+
+<main>
+  <section class="pt-32 pb-20 px-6 md:px-10" style="background:linear-gradient(135deg,#012A44 0%,#0a3d5c 60%,#0077B6 100%);">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-[#00A8A8] text-xs font-bold tracking-[0.25em] uppercase mb-5">About Us</p>
+      <h1 class="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-6">Local Cartagena travel planning, made clear.</h1>
+      <p class="text-white/75 text-lg md:text-xl max-w-3xl leading-relaxed">Paradise Cartagena Tours helps travelers discover and book trusted tours, boats, beach clubs, and custom group experiences in Cartagena, Colombia.</p>
+    </div>
+  </section>
+
+  <section class="py-16 px-6 md:px-10 bg-white">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-black text-[#012A44] mb-4">What we do</h2>
+        <p class="text-gray-600 leading-relaxed">We operate as a tour and travel booking agency. Some experiences may be coordinated directly by our team, while other tours, boats, transportation, beach clubs, guides, and activities may be fulfilled by trusted independent local providers. We help customers compare options, understand pricing, confirm availability, and receive support around their booking.</p>
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-black text-[#012A44] mb-4">How bookings work</h2>
+        <p class="text-gray-600 leading-relaxed">Customers choose an experience on our website or request a custom itinerary. Our team confirms date, group size, pickup details, live availability, included services, excluded costs, provider rules, and the final price before payment when confirmation is needed.</p>
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-black text-[#012A44] mb-4">Pricing and payment timing</h2>
+        <p class="text-gray-600 leading-relaxed">Tour and boat prices are shown on our listing pages where available. Many bookings are future-dated, meaning customers may pay before the tour date to secure a reservation. Custom private trips, large groups, holiday dates, and provider-specific experiences may require a deposit or full prepayment.</p>
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-black text-[#012A44] mb-4">Customer support</h2>
+        <p class="text-gray-600 leading-relaxed">We provide customer support by WhatsApp and email before and after purchase. If a provider change, weather issue, cancellation, or schedule adjustment affects a booking, our team helps coordinate the next steps based on the terms for that experience.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-nav]').forEach(function(a){ if(a.dataset.nav === page) a.classList.add('nav-active'); });
+})();
+</script>
+<script src="shared-footer.js"></script>
+<script src="shared-assistant.js"></script>
+<script src="mobile-enhancements.js"></script>
+<script src="page-transitions.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 <title>Paradise Cartagena Tours | Premium Coastal Experiences</title>
 <meta name="description" content="Discover the best tours in Cartagena, Colombia. Book instantly with local experts via WhatsApp. Island hopping, beach clubs, private boats and more."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&family=Epilogue:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   window.tailwind = window.tailwind || {};
@@ -247,6 +247,75 @@
     background: rgba(255,255,255,.10);
     box-shadow: 0 18px 58px rgba(0,0,0,.16);
   }
+
+  /* ── Direction A Hero ──────────────────────────────────────────── */
+  .hero-dir-a-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(1,28,44,0.88) 0%, rgba(1,28,44,0.50) 45%, rgba(1,28,44,0.12) 100%),
+      linear-gradient(to right, rgba(1,28,44,0.45) 0%, rgba(1,28,44,0) 55%);
+  }
+  .hero-dir-a-eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7ad4df;
+  }
+  .hero-dir-a-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+    font-weight: 400;
+    line-height: 1.06;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+  .hero-dir-a-heading em {
+    font-style: italic;
+  }
+  .hero-dir-a-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FF7A00;
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 30px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .hero-dir-a-btn-primary:hover {
+    background: #e86f00;
+    transform: translateY(-1px);
+  }
+  .hero-dir-a-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(8,18,28,0.70);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .hero-dir-a-btn-secondary:hover {
+    background: rgba(8,18,28,0.90);
+    transform: translateY(-1px);
+  }
   .popular-experiences-row {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -357,6 +426,13 @@
       margin-left: 0;
       max-width: none;
       padding: 20px;
+    }
+    .hero-dir-a-btn-primary,
+    .hero-dir-a-btn-secondary {
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
+      padding: 16px 24px;
     }
     .popular-experiences-row {
       grid-auto-flow: column;
@@ -1162,54 +1238,32 @@
 </header>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     HERO – dark editorial split layout
+     HERO – Direction A: full-bleed photo, bottom-left editorial
 ═══════════════════════════════════════════════════════════════ -->
 <main class="hero-experience pt-[76px]">
-  <video
+  <!-- Placeholder image — swap src for your real hero photo when ready -->
+  <img
     class="hero-media"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    poster="images/bento-boats.jpg"
-    aria-label="Cartagena travel experience video"
-  >
-    <source src="media/homepage-1.mp4" type="video/mp4"/>
-  </video>
-  <div class="hero-soft-scrim"></div>
+    src="images/bento-boats.jpg"
+    alt="Cartagena coastline"
+  />
+  <div class="hero-dir-a-scrim"></div>
 
-  <section class="relative z-10 min-h-[calc(100vh-76px)] flex items-center px-5 md:px-10 pt-20 pb-14 md:pt-24 md:pb-16">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[minmax(0,560px)_minmax(270px,330px)] gap-10 lg:gap-40 xl:gap-52 items-center justify-between">
-      <div class="max-w-[560px] text-white">
-        <div class="hero-copy-panel">
-          <div class="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-cyan-100 mb-4">
-            <span class="material-symbols-outlined text-base text-[#00A8A8]">travel_explore</span>
-            Paradise Cartagena Tours
-          </div>
-          <h1 class="text-[2.9rem] sm:text-[3.4rem] lg:text-[3.5rem] font-black leading-[1] tracking-tight mb-4 max-w-[510px]" style="font-family:'Epilogue',sans-serif;">
-            <span class="sm:whitespace-nowrap">Explore Cartagena</span><br/>
-            <span>Your Way</span>
-          </h1>
-          <p class="text-white/84 text-lg md:text-xl leading-[1.65] max-w-[380px] mb-5">
-            Private boats, beach clubs, and curated Cartagena experiences.
-          </p>
-          <div class="flex">
-            <button onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7A00] px-8 py-3.5 text-white font-black uppercase tracking-wide shadow-2xl shadow-orange-500/25 transition-all hover:bg-[#e86f00] hover:-translate-y-0.5">
-              View Tours
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <aside class="hero-ai-card rounded-2xl p-4 md:p-5 text-white max-w-[330px] w-full mx-auto lg:mx-0 lg:justify-self-end lg:-translate-y-8">
-        <p class="text-[11px] font-black uppercase tracking-[0.18em] text-white/58 mb-3">Get Your Cartagena Plan</p>
-        <h2 class="text-2xl font-black mb-3">Plan around your group.</h2>
-        <p class="text-white/72 text-sm leading-relaxed mb-5">Answer a few quick questions and get a personalized itinerary with estimated pricing.</p>
-        <button onclick="openItineraryBuilder()" class="w-full rounded-full bg-[#00A8A8] px-6 py-3.5 font-black uppercase tracking-wide text-white transition-all hover:bg-[#008f8f] hover:-translate-y-0.5">
-          Start Planning
+  <section class="relative z-10 min-h-[calc(100vh-76px)] flex flex-col justify-end px-6 md:px-14 lg:px-20 pb-16 md:pb-24">
+    <div class="max-w-3xl">
+      <p class="hero-dir-a-eyebrow mb-5">Private Boats &middot; Beach Clubs &middot; Island Days</p>
+      <h1 class="hero-dir-a-heading mb-8">
+        Explore Cartagena,<br>
+        <em>your way.</em>
+      </h1>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
+        <button onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'})" class="hero-dir-a-btn-primary">
+          View Tours &rarr;
         </button>
-      </aside>
+        <button onclick="openItineraryBuilder()" class="hero-dir-a-btn-secondary">
+          Plan your trip
+        </button>
+      </div>
     </div>
   </section>
 </main>
