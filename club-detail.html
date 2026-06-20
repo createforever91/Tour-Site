@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Beach Club – Paradise Cartagena Tours</title>
+<title>Beach Club – Haven Cartagena Tours</title>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -92,7 +92,7 @@ tailwind.config = {
 
 <!-- ═══ NAVBAR ═══════════════════════════════════════════════ -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-2 bg-[#012A44]/90 backdrop-blur-xl">
-  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
+  <a href="index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="images/logo.png" alt="Haven Cartagena Tours" style="max-height:58px;height:auto;width:auto;"></a>
   <nav class="hidden md:flex items-center gap-7">
     <a href="tours.html"       data-nav="tours"        class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.tours">TOURS</a>
     <a href="beach-clubs.html" data-nav="beach-clubs"  class="text-white/75 font-medium hover:text-[#FF7A00] transition-colors duration-300 text-[0.72rem] tracking-widest pb-0.5" data-i18n="nav.beach">BEACH CLUBS</a>
@@ -476,7 +476,7 @@ const club = clubs.find(c => c.id === clubId) || clubs[0];
 
 /* ── RENDER ─────────────────────────── */
 function renderClub() {
-  document.title = club.name.replace(/^[^\w]+/, '') + ' – Paradise Cartagena Tours';
+  document.title = club.name.replace(/^[^\w]+/, '') + ' – Haven Cartagena Tours';
 
   // Breadcrumb
   document.getElementById('breadcrumbName').textContent = club.emoji + ' ' + club.name;

@@ -140,7 +140,7 @@ function systemPrompt(language, pageContext) {
   }[language] || 'Answer in the same language the customer used.';
 
   return `
-You are Andrea, the AI assistant for Paradise Cartagena Tours.
+You are Andrea, the AI assistant for Haven Cartagena Tours.
 ${languageInstruction}
 
 Style:
@@ -267,6 +267,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Paradise Cartagena Tours running at http://localhost:${PORT}`);
+  console.log(`Haven Cartagena Tours running at http://localhost:${PORT}`);
   console.log(process.env.ANTHROPIC_API_KEY ? 'Andrea is connected to Claude.' : 'Andrea is using browser fallback until ANTHROPIC_API_KEY is set.');
 });

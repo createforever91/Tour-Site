@@ -278,7 +278,7 @@
 
     drawer.innerHTML = `
       <div class="pct-mobile-drawer-head">
-        <img src="images/logo.png" alt="Paradise Cartagena Tours" style="max-height:52px;width:auto;">
+        <img src="images/logo.png" alt="Haven Cartagena Tours" style="max-height:52px;width:auto;">
         <button type="button" class="pct-mobile-close" aria-label="Close menu"><span class="material-symbols-outlined">close</span></button>
       </div>
       <nav class="pct-mobile-links">${links}</nav>

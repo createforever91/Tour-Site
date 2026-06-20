@@ -1,6 +1,6 @@
 (function () {
   const WA_NUMBER = '573001234567';
-  const SUPPORT_EMAIL = 'info@paradisecartagenatours.com';
+  const SUPPORT_EMAIL = 'info@haventoursctg.com';
   const year = new Date().getFullYear();
 
   function footerHTML() {
@@ -10,7 +10,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
             <div>
               <a href="index.html" class="inline-flex hover:opacity-85 transition-opacity">
-                <img src="images/logo.png" alt="Paradise Cartagena Tours" class="h-14 w-auto mb-4">
+                <img src="images/logo.png" alt="Haven Cartagena Tours" class="h-14 w-auto mb-4">
               </a>
               <p class="text-white/60 text-sm font-medium leading-relaxed mb-6">
                 Premium coastal experiences in Cartagena. Boats, beach clubs, tours, and group trips planned with local expertise.
@@ -81,7 +81,7 @@
 
           <div class="pt-8 border-t border-white/15 text-center">
             <p class="text-white/55 text-xs font-semibold uppercase tracking-widest">
-              Copyright ${year} Paradise Cartagena Tours. All rights reserved.
+              Copyright ${year} Haven Cartagena Tours. All rights reserved.
             </p>
           </div>
         </div>

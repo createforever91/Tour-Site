@@ -1,9 +1,9 @@
 @echo off
-title Paradise Cartagena Tours — Local Server + ngrok
+title Haven Cartagena Tours — Local Server + ngrok
 
 echo.
 echo  ==========================================
-echo   Paradise Cartagena Tours — Live Preview
+echo   Haven Cartagena Tours — Live Preview
 echo  ==========================================
 echo.
 
